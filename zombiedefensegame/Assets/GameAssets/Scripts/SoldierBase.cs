@@ -40,7 +40,7 @@ namespace TheyAreComing
             if (Mathf.Approximately(currentEuler.y, targetAngle))
             {
                 GameObject projectile = Instantiate(projectilePrefab, aimPivotTrans.position, Quaternion.identity) as GameObject; //Spawns the selected projectile
-                projectile.GetComponent<Rigidbody>().AddForce(aimPivotTrans.transform.right * 200); //Set the speed of the projectile by applying force to the rigidbody                return;
+                projectile.GetComponent<Rigidbody>().AddForce(aimPivotTrans.transform.right * 1000); //Set the speed of the projectile by applying force to the rigidbody                return;
             }
             aimPivotTrans.localEulerAngles = Mathf.Lerp(currentEuler.y, targetAngle, .2f) * Vector3.up; 
         }
