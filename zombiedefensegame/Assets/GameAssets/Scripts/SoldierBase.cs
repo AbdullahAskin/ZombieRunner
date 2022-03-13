@@ -7,6 +7,7 @@ namespace TheyAreComing
     public abstract class SoldierBase : MonoBehaviour
     {
         [SerializeField] private Transform aimPivotTrans;
+        [SerializeField] private Transform projectileSpawnTrans;
         [SerializeField] private float rotateSpeed;
         [SerializeField] private GameObject projectilePrefab;
         private GunGuide _gunGuide;
@@ -21,7 +22,14 @@ namespace TheyAreComing
 
         private void OnDisable() => ToggleSubscribes(false);
 
-        private void ToggleSubscribes(bool bind) { }
+        private void ToggleSubscribes(bool bind)
+        {
+            DOVirtual.DelayedCall(1f, () =>
+            {
+                var projectile = Instantiate(projectilePrefab, projectileSpawnTrans.position, Quaternion.identity);
+                projectile.GetComponent<ETFXProjectileScript>().Init(projectileSpawnTrans.transform.forward);
+            }).SetLoops(-1);
+        }
 
         public void FixedUpdate()
         {
@@ -39,8 +47,6 @@ namespace TheyAreComing
             var currentEuler = aimPivotTrans.localEulerAngles;
             if (Mathf.Approximately(currentEuler.y, targetAngle))
             {
-                GameObject projectile = Instantiate(projectilePrefab, aimPivotTrans.position, Quaternion.identity) as GameObject; //Spawns the selected projectile
-                projectile.GetComponent<Rigidbody>().AddForce(aimPivotTrans.transform.right * 1000); //Set the speed of the projectile by applying force to the rigidbody                return;
             }
             aimPivotTrans.localEulerAngles = Mathf.Lerp(currentEuler.y, targetAngle, .2f) * Vector3.up; 
         }
