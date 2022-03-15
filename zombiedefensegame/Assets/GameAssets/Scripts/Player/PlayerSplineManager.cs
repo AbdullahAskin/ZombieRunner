@@ -8,10 +8,8 @@ namespace TheyAreComing
     public class PlayerSplineManager : MonoBehaviour
     {
         public float horizontalSpeed;
-        public Vector2 horizontalLimit;
         public float horizontalDeadZone;
-
-
+        public Vector2 horizontalLimit;
         private SplineFollower _splineFollower;
 
         public SplineFollower splineFollower => 

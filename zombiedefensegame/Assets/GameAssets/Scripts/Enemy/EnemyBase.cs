@@ -1,9 +1,8 @@
-using System;
 using UnityEngine;
 
 namespace TheyAreComing
 {
-    public class EnemyBase : MonoBehaviour
+    public class EnemyBase : MonoBehaviour,IShootable
     {
         private void Awake()
         {
@@ -13,6 +12,11 @@ namespace TheyAreComing
         private void OnDisable()
         {
             EnemyManager.enemyBases.Remove(this);
+        }
+
+        public void Damage(float amount)
+        {
+            
         }
     }
 }
