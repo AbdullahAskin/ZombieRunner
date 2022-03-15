@@ -1,10 +1,11 @@
+using System;
 using DG.Tweening;
 using UnityEngine;
 
 namespace TheyAreComing
 {
     [RequireComponent(typeof(GunGuide))]
-    public abstract class SoldierBase : MonoBehaviour
+    public class SoldierBase : MonoBehaviour
     {
         [SerializeField] private Gun gun;
         [SerializeField] private float rotateSpeed;
@@ -39,8 +40,10 @@ namespace TheyAreComing
             var enemiesInRange = _gunGuide.GetEnemiesInRange();
             var targetAngle = _gunGuide.GetClosestAngle(enemiesInRange);
             var currentEuler = _aimPivotTrans.localEulerAngles;
-            if (Mathf.Approximately(currentEuler.y, targetAngle)) gun.Fire();
-            _aimPivotTrans.localEulerAngles = Mathf.Lerp(currentEuler.y, targetAngle, .2f) * Vector3.up;
+            if (Mathf.Abs(targetAngle - currentEuler.y) < 1f) gun.Fire();
+            var rotateAmount = Mathf.Sign(targetAngle - currentEuler.y) * Time.fixedDeltaTime * rotateSpeed;
+            var currentAngle = rotateAmount + currentEuler.y;
+            _aimPivotTrans.localEulerAngles = Mathf.Clamp(currentAngle,currentAngle,targetAngle) * Vector3.up;
         }
     }
 

@@ -1,6 +1,8 @@
+using UnityEngine;
+
 namespace TheyAreComing
 {
-    public class Player : SoldierBase
+    public class Player : MonoBehaviour
     {
         private PlayerStateManager _playerStateManager;
 
