@@ -12,7 +12,7 @@ namespace TheyAreComing
 
         public void Init()
         {
-            playerStateManager.SwitchState<PlayerMovementState>();
+            playerStateManager.SwitchState<PlayerStateMovement>();
         }
     }
 }
