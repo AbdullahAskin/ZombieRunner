@@ -4,13 +4,13 @@ namespace TheyAreComing
 {
     public class EnemyStateIdle : EnemyStateBase
     {
-        public EnemyStateIdle(EnemyStateManager enemyStateManager) : base(enemyStateManager)
+        public EnemyStateIdle(EnemyStateManager stateManager) : base(stateManager)
         {
         }
 
         public override void EnterState()
         {
-            _enemyStateManager.enemyAnimationController.ToggleWalk(false);
+            EnemyAnimationController.ToggleWalk(false);
         }
 
         public override void ExitState()
@@ -19,6 +19,9 @@ namespace TheyAreComing
 
         public override void UpdateState()
         {
+            var dis = Vector3.Distance(StateManager.transform.position, PlayerTrans.position);
+            if (dis > CharacterSettings.range) return;
+            StateManager.SwitchState<EnemyStateMovement>(0);
         }
 
         public override void OnCollisionEnter(Collision collision)

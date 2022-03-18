@@ -1,21 +1,26 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace TheyAreComing
 {
-	public class EnemyStateManager : StateManager
-	{
-		private EnemyAnimationController _enemyAnimationController;
+    [RequireComponent(typeof(EnemyBase))]
+    public class EnemyStateManager : StateManager
+    {
+        public EnemyCharacterSettingsScriptableObject characterSettingsScriptableObject;
+        private EnemyAnimationController _enemyAnimationController;
+        private EnemyBase _enemyBase;
 
-		public EnemyAnimationController enemyAnimationController => _enemyAnimationController
-			? _enemyAnimationController
-			: _enemyAnimationController = GetComponent<EnemyAnimationController>();
+        public EnemyAnimationController EnemyAnimationController => _enemyAnimationController
+            ? _enemyAnimationController
+            : _enemyAnimationController = GetComponent<EnemyAnimationController>();
 
-		private void Start()
-		{
-			InitStates(new List<IStateBase>
-				{new EnemyStateIdle(this)});
-			SwitchState<PlayerStateIdle>();
-		}
-	}
+        public EnemyBase EnemyBase => _enemyBase
+            ? _enemyBase
+            : _enemyBase = GetComponent<EnemyBase>();
+
+        private void Start()
+        {
+            CreateStates<EnemyStateBase>(this);
+            SwitchState<EnemyStateIdle>(0);
+        }
+    }
 }

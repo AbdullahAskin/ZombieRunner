@@ -24,7 +24,7 @@ namespace TheyAreComing
             return angle;
         }
 
-        public List<EnemyBase> GetEnemiesInRange()=>  EnemyManager.enemyBases.FindAll(x=> Vector3.Distance(x.transform.position, transform.position) < range);
+        public List<EnemyBase> GetEnemiesInRange()=>  EnemyManager.EnemyBases.FindAll(x=> Vector3.Distance(x.transform.position, transform.position) < range);
 
         public float GetClosestAngle(List<EnemyBase> enemiesInRange)
         {

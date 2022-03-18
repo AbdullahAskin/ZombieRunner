@@ -6,13 +6,16 @@ namespace TheyAreComing
 {
     public class EnemyManager : MonoBehaviour
     {
-        public static List<EnemyBase> enemyBases = new List<EnemyBase>();
-        private Player _player;
+        public static List<EnemyBase> EnemyBases = new List<EnemyBase>();
+        private static Player _player;
         private Tween _updateEnemyTween;
+
+        public static Player Player => _player
+            ? _player
+            : _player = FindObjectOfType<Player>();
 
         private void Awake()
         {
-            _player = FindObjectOfType<Player>();
             ToggleSubscribes(true);
         }
 
@@ -25,19 +28,19 @@ namespace TheyAreComing
         {
             if (bind)
             {
-                enemyBases = new List<EnemyBase>();
+                EnemyBases = new List<EnemyBase>();
                 _updateEnemyTween = DOVirtual.DelayedCall(.4f, UpdateEnemy).SetLoops(-1);
             }
             else
             {
                 _updateEnemyTween?.Kill();
-                enemyBases.Clear();
+                EnemyBases.Clear();
             }
         }
 
         private void UpdateEnemy()
         {
-            enemyBases.RemoveAll(x => x.transform.position.z > _player.transform.position.z);
+            EnemyBases.RemoveAll(x => x.transform.position.z > Player.transform.position.z);
         }
     }
 }

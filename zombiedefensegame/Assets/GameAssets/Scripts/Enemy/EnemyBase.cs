@@ -10,7 +10,7 @@ namespace TheyAreComing
 
         private void Awake()
         {
-            EnemyManager.enemyBases.Add(this);
+            EnemyManager.EnemyBases.Add(this);
             _currentHealth = maxHealth;
         }
 
@@ -21,7 +21,7 @@ namespace TheyAreComing
 
         private void OnDisable()
         {
-            EnemyManager.enemyBases.Remove(this);
+            EnemyManager.EnemyBases.Remove(this);
         }
 
         public void Damage(float amount)

@@ -11,8 +11,8 @@ namespace TheyAreComing
 
         public override void EnterState()
         {
-            playerStateManager.playerAnimationController.ToggleWalk(false);
-            playerStateManager.playerSplineManager.SetSpeed(0f, 1f);
+            playerStateManager.PlayerAnimationController.ToggleWalk(false);
+            playerStateManager.PlayerSplineManager.SetSpeed(0f, 1f);
         }
 
         public override void ExitState()

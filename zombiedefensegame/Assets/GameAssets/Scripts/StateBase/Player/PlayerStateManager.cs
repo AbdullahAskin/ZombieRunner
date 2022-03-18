@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace TheyAreComing
@@ -9,19 +8,18 @@ namespace TheyAreComing
         private PlayerAnimationController _playerAnimationController;
         private PlayerSplineManager _playerSplineManager;
 
-        public PlayerAnimationController playerAnimationController => _playerAnimationController
+        public PlayerAnimationController PlayerAnimationController => _playerAnimationController
             ? _playerAnimationController
             : _playerAnimationController = GetComponent<PlayerAnimationController>();
 
-        public PlayerSplineManager playerSplineManager => _playerSplineManager
+        public PlayerSplineManager PlayerSplineManager => _playerSplineManager
             ? _playerSplineManager
             : _playerSplineManager = GetComponent<PlayerSplineManager>();
 
         private void Start()
         {
-            InitStates(new List<IStateBase>
-                {new PlayerStateIdle(this, playerSplineManager), new PlayerStateMovement(this, playerSplineManager)});
-            SwitchState<PlayerStateIdle>();
+            CreateStates<PlayerStateBase>(this, PlayerSplineManager);
+            SwitchState<PlayerStateIdle>(0);
         }
     }
 }

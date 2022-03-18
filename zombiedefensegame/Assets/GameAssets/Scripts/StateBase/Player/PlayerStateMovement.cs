@@ -24,9 +24,9 @@ namespace TheyAreComing
         public override void EnterState()
         {
             ToggleInput(true);
-            playerStateManager.playerAnimationController.ToggleWalk(true);
-            playerStateManager.playerSplineManager.SetSpeed(10f, 1f);
-            _horizontalMovementX = playerStateManager.playerSplineManager.splineMotion.x;
+            playerStateManager.PlayerAnimationController.ToggleWalk(true);
+            playerStateManager.PlayerSplineManager.SetSpeed(10f, 1f);
+            _horizontalMovementX = playerStateManager.PlayerSplineManager.splineMotion.x;
         }
 
         public override void ExitState()
