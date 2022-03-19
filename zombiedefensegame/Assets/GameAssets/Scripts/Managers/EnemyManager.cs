@@ -28,7 +28,6 @@ namespace TheyAreComing
         {
             if (bind)
             {
-                EnemyBases = new List<EnemyBase>();
                 _updateEnemyTween = DOVirtual.DelayedCall(.4f, UpdateEnemy).SetLoops(-1);
             }
             else

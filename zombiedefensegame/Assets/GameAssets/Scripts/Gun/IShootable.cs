@@ -2,6 +2,6 @@ namespace TheyAreComing
 {
 	public interface IShootable
 	{
-		public void Damage(float amount);
+		public void Damage(int amount);
 	}
 }

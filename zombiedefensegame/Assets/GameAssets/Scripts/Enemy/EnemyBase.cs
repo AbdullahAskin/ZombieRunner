@@ -2,16 +2,18 @@ using UnityEngine;
 
 namespace TheyAreComing
 {
-    public class EnemyBase : MonoBehaviour, IShootable
+    public class EnemyBase : MonoBehaviour
     {
         [SerializeField] private Animator animator;
-        [SerializeField] private float maxHealth;
-        private float _currentHealth;
+        private EnemyCollisionManager _enemyCollisionManager;
+
+        private EnemyCollisionManager EnemyCollisionManager => _enemyCollisionManager
+            ? _enemyCollisionManager
+            : _enemyCollisionManager = GetComponent<EnemyCollisionManager>();
 
         private void Awake()
         {
             EnemyManager.EnemyBases.Add(this);
-            _currentHealth = maxHealth;
         }
 
         public void FixedUpdate()
@@ -24,13 +26,16 @@ namespace TheyAreComing
             EnemyManager.EnemyBases.Remove(this);
         }
 
-        public void Damage(float amount)
+        private void OnTriggerEnter(Collider other)
         {
-            _currentHealth = Mathf.Clamp(_currentHealth - amount, 0, maxHealth);
-            if (_currentHealth <= 0)
-            {
-                //KILL
-            }
+            if (!other.TryGetComponent(out ITriggerable<EnemyCollisionManager> triggerable)) return;
+            triggerable.TriggerEnter(EnemyCollisionManager);
+        }
+
+        private void OnTriggerExit(Collider other)
+        {
+            if (!other.TryGetComponent(out ITriggerable<EnemyCollisionManager> triggerable)) return;
+            triggerable.TriggerEnter(EnemyCollisionManager);
         }
     }
 }

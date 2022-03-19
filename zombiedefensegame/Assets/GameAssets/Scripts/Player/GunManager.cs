@@ -6,6 +6,7 @@ namespace TheyAreComing
     [RequireComponent(typeof(GunGuide))]
     public class GunManager : MonoBehaviour
     {
+        public Transform aimPivotTrans;
         public Gun currentGun;
         public float rotateSpeed;
 

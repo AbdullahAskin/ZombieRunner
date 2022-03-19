@@ -5,27 +5,26 @@ namespace TheyAreComing
 {
     public class GunStateIdle : GunStateBase
     {
-        private readonly TweenParams _movTweenParam = new TweenParams().SetEase(Ease.Linear).SetSpeedBased();
         private Tween _movTween;
 
         public GunStateIdle(PlayerStateManager stateManager) : base(stateManager)
         {
         }
 
-        private Vector2 AimLimit => GunGuide.aimLimit;
-
         public override void EnterState()
         {
-            var sign = 1;
-            var startAngle = AimLimit.x + 20f * sign;
-            _movTween = AimPivotTrans.DOLocalRotate((startAngle) * Vector3.up, 60f)
-                .SetEase(Ease.Linear).SetSpeedBased().SetLoops(-1,LoopType.Yoyo);
-
-
-            // _movTween = DOTween.Sequence()
-            //     .Append(AimPivotTrans.DOLocalRotate((AimLimit.x + 20) * Vector3.up, 60f).SetAs(_movTweenParam))
-            //     .Append(AimPivotTrans.DOLocalRotate((AimLimit.y - 20) * Vector3.up, 60f).SetAs(_movTweenParam))
-            //     .SetLoops(-1);
+            const float start = 70;
+            const float end = 110;
+            
+            _movTween = AimPivotTrans.DOLocalRotate(start * Vector3.up, end - start).SetEase(Ease.Linear)
+                .SetSpeedBased()
+                .SetEase(Ease.Linear).OnComplete(() =>
+                {
+                    _movTween = DOTween.Sequence()
+                        .Append(AimPivotTrans.DOLocalRotate(end * Vector3.up, 1.75f).SetEase(Ease.InOutSine))
+                        .AppendInterval(.1f)
+                        .SetLoops(-1, LoopType.Yoyo);
+                });
         }
 
         public override void ExitState()
@@ -35,8 +34,7 @@ namespace TheyAreComing
 
         public override void UpdateState()
         {
-            var enemiesInRange = GunGuide.GetEnemiesInRange();
-            if (enemiesInRange.Count != 0) StateManager.SwitchState<GunStateAttack>(1);
+            if (GunGuide.IsAnyEnemyShootable()) StateManager.SwitchState<GunStateAttack>(1);
         }
 
         public override void OnCollisionEnter(Collision collision)
