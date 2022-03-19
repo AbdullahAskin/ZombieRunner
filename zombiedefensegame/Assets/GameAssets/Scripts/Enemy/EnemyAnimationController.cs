@@ -14,5 +14,10 @@ namespace TheyAreComing
 			animator.SetBool(Walk, bind);
 			animator.SetBool(Idle, !bind);
 		}
+
+		public void Death()
+		{
+			animator.CrossFadeInFixedTime("Die Backwards", 0.2f);
+		}
 	}
 }

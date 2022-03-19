@@ -8,12 +8,12 @@ namespace TheyAreComing
 {
     public abstract class StateManager : MonoBehaviour
     {
-        private readonly List<IStateBase> _currentStates = new List<IStateBase>();
+        public readonly List<IStateBase> _currentStates = new List<IStateBase>();
         protected List<IStateBase> StateBases = new List<IStateBase>();
 
         private void FixedUpdate()
         {
-            _currentStates.ForEach(x => x?.UpdateState());
+            _currentStates.ToList().ForEach(x => x?.UpdateState());
         }
 
         public void OnCollisionEnter(Collision collision)

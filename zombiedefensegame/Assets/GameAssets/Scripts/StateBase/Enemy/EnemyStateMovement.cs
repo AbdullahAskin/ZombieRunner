@@ -13,6 +13,7 @@ namespace TheyAreComing
 
         public override void EnterState()
         {
+            Debug.Log("inside of movement state");
             EnemyAnimationController.ToggleWalk(true);
             DOVirtual.Float(0, CharacterSettings.speed, .5f, x => _currentSpeed = x);
         }

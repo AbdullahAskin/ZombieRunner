@@ -4,21 +4,19 @@ namespace TheyAreComing
 {
     public class EnemyBase : MonoBehaviour
     {
-        [SerializeField] private Animator animator;
-        private EnemyCollisionManager _enemyCollisionManager;
+        [SerializeField] private EnemySettingsScriptableObject enemySettingsScriptable;
+        public EnemyCharacterSettings enemySettings;
+        private EnemyStateManager _enemyStateManager;
 
-        private EnemyCollisionManager EnemyCollisionManager => _enemyCollisionManager
-            ? _enemyCollisionManager
-            : _enemyCollisionManager = GetComponent<EnemyCollisionManager>();
+
+        private EnemyStateManager EnemyStateManager =>
+            _enemyStateManager ? _enemyStateManager : _enemyStateManager = GetComponent<EnemyStateManager>();
+
 
         private void Awake()
         {
+            enemySettings = enemySettingsScriptable.GetCharacterSettings();
             EnemyManager.EnemyBases.Add(this);
-        }
-
-        public void FixedUpdate()
-        {
-            if (Input.GetKey(KeyCode.R)) animator.CrossFadeInFixedTime("Die Backwards", 0.2f);
         }
 
         private void OnDisable()
@@ -26,16 +24,10 @@ namespace TheyAreComing
             EnemyManager.EnemyBases.Remove(this);
         }
 
-        private void OnTriggerEnter(Collider other)
+        public void Death()
         {
-            if (!other.TryGetComponent(out ITriggerable<EnemyCollisionManager> triggerable)) return;
-            triggerable.TriggerEnter(EnemyCollisionManager);
-        }
-
-        private void OnTriggerExit(Collider other)
-        {
-            if (!other.TryGetComponent(out ITriggerable<EnemyCollisionManager> triggerable)) return;
-            triggerable.TriggerEnter(EnemyCollisionManager);
+            EnemyStateManager.SwitchState<EnemyStateDeath>(0);
+            EnemyManager.EnemyBases.Remove(this);
         }
     }
 }

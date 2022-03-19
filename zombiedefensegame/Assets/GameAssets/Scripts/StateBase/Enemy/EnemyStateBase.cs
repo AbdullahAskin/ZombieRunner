@@ -4,17 +4,17 @@ namespace TheyAreComing
 {
     public abstract class EnemyStateBase : IStateBase
     {
-        protected EnemyCharacterSettings CharacterSettings;
-        protected EnemyAnimationController EnemyAnimationController;
-        protected Transform EnemyTrans;
-        protected Transform PlayerTrans;
-        protected EnemyStateManager StateManager;
+        protected readonly EnemyCharacterSettings CharacterSettings;
+        protected readonly EnemyAnimationController EnemyAnimationController;
+        protected readonly Transform EnemyTrans;
+        protected readonly Transform PlayerTrans;
+        protected readonly EnemyStateManager StateManager;
 
         protected EnemyStateBase(EnemyStateManager stateManager)
         {
             StateManager = stateManager;
             PlayerTrans = EnemyManager.Player.transform;
-            CharacterSettings = stateManager.characterSettingsScriptableObject.GetCharacterSettings();
+            CharacterSettings = stateManager.EnemyBase.enemySettings;
             EnemyTrans = stateManager.EnemyBase.transform;
             EnemyAnimationController = stateManager.EnemyAnimationController;
         }
