@@ -8,8 +8,8 @@ namespace TheyAreComing
 {
     public abstract class StateManager : MonoBehaviour
     {
-        private List<IStateBase> _currentStates = new List<IStateBase>();
-        private List<IStateBase> _stateBases = new List<IStateBase>();
+        private readonly List<IStateBase> _currentStates = new List<IStateBase>();
+        protected List<IStateBase> StateBases = new List<IStateBase>();
 
         private void FixedUpdate()
         {
@@ -21,27 +21,25 @@ namespace TheyAreComing
             _currentStates.ForEach(x => x?.OnCollisionEnter(collision));
         }
 
-        protected void ExtendCurrentStateArray(int targetSize)
+        public void SwitchState<T>(int iState) where T : IStateBase
         {
+            if (_currentStates.Count < iState + 1)
+                _currentStates.AddRange(new IStateBase[iState + 1 - _currentStates.Count]);
+            var state = (T) StateBases.Find(x => x.GetType() == typeof(T));
+            _currentStates[iState]?.ExitState();
+            _currentStates[iState] = state;
+            _currentStates[iState]?.EnterState();
         }
 
-        public void SwitchState<T>(int iCurrent) where T : IStateBase
+        protected List<IStateBase> GetStateBases<T>(params object[] constructorArgs) where T : IStateBase
         {
-            if (_currentStates.Count < iCurrent + 1)
-                _currentStates.AddRange(new IStateBase[iCurrent + 1 - _currentStates.Count]);
-            var state = (T) _stateBases.Find(x => x.GetType() == typeof(T));
-            _currentStates[iCurrent]?.ExitState();
-            _currentStates[iCurrent] = state;
-            _currentStates[iCurrent]?.EnterState();
-        }
-
-        protected void CreateStates<T>(params object[] constructorArgs) where T : IStateBase
-        {
+            var stateBases = new List<IStateBase>();
             Assembly.GetAssembly(typeof(T))
                 .GetTypes()
                 .Where(myType => myType.IsClass && !myType.IsAbstract && myType.IsSubclassOf(typeof(T)))
                 .Select(type => (T) Activator.CreateInstance(type, constructorArgs))
-                .ToList().ForEach(x => _stateBases.Add(x));
+                .ToList().ForEach(x => stateBases.Add(x));
+            return stateBases;
         }
     }
 }

@@ -19,7 +19,7 @@ namespace TheyAreComing
 
         private void Start()
         {
-            CreateStates<EnemyStateBase>(this);
+            GetStateBases<EnemyStateBase>(this);
             SwitchState<EnemyStateIdle>(0);
         }
     }

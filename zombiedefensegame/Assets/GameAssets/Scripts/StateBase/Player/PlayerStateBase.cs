@@ -4,13 +4,13 @@ namespace TheyAreComing
 {
     public abstract class PlayerStateBase : IStateBase
     {
-        protected PlayerStateManager playerStateManager;
-        protected PlayerSplineManager splineManager;
+        protected PlayerStateManager PlayerStateManager;
+        protected PlayerSplineManager SplineManager;
 
-        protected PlayerStateBase(PlayerStateManager playerStateManager, PlayerSplineManager splineManager)
+        protected PlayerStateBase(PlayerStateManager playerStateManager)
         {
-            this.playerStateManager = playerStateManager;
-            this.splineManager = splineManager;
+            PlayerStateManager = playerStateManager;
+            SplineManager = playerStateManager.PlayerSplineManager;
         }
 
         public abstract void EnterState();

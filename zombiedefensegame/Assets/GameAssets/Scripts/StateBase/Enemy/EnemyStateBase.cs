@@ -10,7 +10,7 @@ namespace TheyAreComing
         protected Transform PlayerTrans;
         protected EnemyStateManager StateManager;
 
-        public EnemyStateBase(EnemyStateManager stateManager)
+        protected EnemyStateBase(EnemyStateManager stateManager)
         {
             StateManager = stateManager;
             PlayerTrans = EnemyManager.Player.transform;

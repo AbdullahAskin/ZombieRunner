@@ -9,10 +9,9 @@ namespace TheyAreComing
         private readonly Vector2 _horizontalLimit;
         private float _horizontalMovementX;
 
-        public PlayerStateMovement(PlayerStateManager playerStateManager, PlayerSplineManager splineManager) : base(
-            playerStateManager, splineManager)
+        public PlayerStateMovement(PlayerStateManager playerStateManager) : base(playerStateManager)
         {
-            _horizontalLimit = splineManager.horizontalLimit;
+            _horizontalLimit = SplineManager.horizontalLimit;
         }
 
         public void ToggleInput(bool bind)
@@ -24,9 +23,9 @@ namespace TheyAreComing
         public override void EnterState()
         {
             ToggleInput(true);
-            playerStateManager.PlayerAnimationController.ToggleWalk(true);
-            playerStateManager.PlayerSplineManager.SetSpeed(10f, 1f);
-            _horizontalMovementX = playerStateManager.PlayerSplineManager.splineMotion.x;
+            PlayerStateManager.PlayerAnimationController.ToggleWalk(true);
+            PlayerStateManager.PlayerSplineManager.SetSpeed(10f, 1f);
+            _horizontalMovementX = PlayerStateManager.PlayerSplineManager.splineMotion.x;
         }
 
         public override void ExitState()
@@ -36,8 +35,8 @@ namespace TheyAreComing
 
         public override void UpdateState()
         {
-            var targetMotionX = Mathf.Lerp(splineManager.splineMotion.x, _horizontalMovementX, .25f);
-            splineManager.splineMotion = new Vector2(targetMotionX, 0);
+            var targetMotionX = Mathf.Lerp(SplineManager.splineMotion.x, _horizontalMovementX, .25f);
+            SplineManager.splineMotion = new Vector2(targetMotionX, 0);
         }
 
         public override void OnCollisionEnter(Collision collision)
@@ -46,8 +45,8 @@ namespace TheyAreComing
 
         private void HorizontalMovement(LeanFinger leanFinger)
         {
-            if (Math.Abs(leanFinger.ScreenDelta.x) < splineManager.horizontalDeadZone) return;
-            var increaseAmount = leanFinger.ScreenDelta.x / Screen.width * splineManager.horizontalSpeed;
+            if (Math.Abs(leanFinger.ScreenDelta.x) < SplineManager.horizontalDeadZone) return;
+            var increaseAmount = leanFinger.ScreenDelta.x / Screen.width * SplineManager.horizontalSpeed;
             _horizontalMovementX =
                 Mathf.Clamp(_horizontalMovementX + increaseAmount, _horizontalLimit.x, _horizontalLimit.y);
         }

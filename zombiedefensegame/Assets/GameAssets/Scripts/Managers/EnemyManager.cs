@@ -40,7 +40,7 @@ namespace TheyAreComing
 
         private void UpdateEnemy()
         {
-            EnemyBases.RemoveAll(x => x.transform.position.z > Player.transform.position.z);
+            EnemyBases.RemoveAll(x => x.transform.position.z < Player.transform.position.z);
         }
     }
 }
