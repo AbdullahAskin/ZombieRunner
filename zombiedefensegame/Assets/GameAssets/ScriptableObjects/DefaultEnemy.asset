@@ -15,4 +15,5 @@ MonoBehaviour:
   characterSettings:
     speed: 5
     range: 30
+    health: 100
     attackRange: 1
