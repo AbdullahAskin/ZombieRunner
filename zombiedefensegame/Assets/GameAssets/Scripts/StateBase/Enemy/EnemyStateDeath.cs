@@ -10,6 +10,7 @@ namespace TheyAreComing
 
 		public override void EnterState()
 		{
+			EnemyAnimationController.Death();
 		}
 
 		public override void ExitState()

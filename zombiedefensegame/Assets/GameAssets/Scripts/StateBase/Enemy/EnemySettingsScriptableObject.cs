@@ -7,12 +7,7 @@ namespace TheyAreComing
         order = 1)]
     public class EnemySettingsScriptableObject : ScriptableObject
     {
-        [SerializeField] private EnemyCharacterSettings characterSettings;
-        
-        public EnemyCharacterSettings GetCharacterSettings()
-        {
-            return characterSettings;
-        }
+        public EnemyCharacterSettings characterSettings;
     }
 
     [Serializable]

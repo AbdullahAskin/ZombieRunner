@@ -4,10 +4,9 @@ namespace TheyAreComing
 {
     public class EnemyBase : MonoBehaviour
     {
-        [SerializeField] private EnemySettingsScriptableObject enemySettingsScriptable;
-        public EnemyCharacterSettings enemySettings;
+        public Transform skinTrans;
+        public EnemySettingsScriptableObject enemySettingsScriptable;
         private EnemyStateManager _enemyStateManager;
-
 
         private EnemyStateManager EnemyStateManager =>
             _enemyStateManager ? _enemyStateManager : _enemyStateManager = GetComponent<EnemyStateManager>();
@@ -15,8 +14,7 @@ namespace TheyAreComing
 
         private void Awake()
         {
-            enemySettings = enemySettingsScriptable.GetCharacterSettings();
-            EnemyManager.EnemyBases.Add(this);
+            // EnemyManager.EnemyBases.Add(this);
         }
 
         private void OnDisable()

@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace TheyAreComing
@@ -17,18 +16,11 @@ namespace TheyAreComing
             ? _enemyBase
             : _enemyBase = GetComponent<EnemyBase>();
 
-        public bool IsAlive
-        {
-            get
-            {
-                if (_currentStates.Capacity == 0 || _currentStates[0] == null) return false;
-                return _currentStates[0].GetType() == typeof(EnemyStateDeath);
-            }
-        }
+        public bool IsAlive => CurrentStates[0].GetType() != typeof(EnemyStateDeath);
 
         private void Start()
         {
-            GetStateBases<EnemyStateBase>(this);
+            StateBases.AddRange(GetStateBases<EnemyStateBase>(this));
             SwitchState<EnemyStateIdle>(0);
         }
     }

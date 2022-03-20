@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace TheyAreComing
@@ -5,10 +6,11 @@ namespace TheyAreComing
     public class EnemyCollisionManager : MonoBehaviour
     {
         [SerializeField] private ParticleSystem explosionParticle;
-        private int _currentHealth;
+        [NonSerialized] private int _currentHealth;
         private EnemyBase _enemyBase;
         private EnemyStateManager _enemyStateManager;
 
+        private EnemyCharacterSettings EnemySettings => EnemyBase.enemySettingsScriptable.characterSettings;
         private EnemyBase EnemyBase => _enemyBase ? _enemyBase : _enemyBase = GetComponent<EnemyBase>();
 
         private int CurrentHealth
@@ -16,7 +18,7 @@ namespace TheyAreComing
             get => _currentHealth;
             set
             {
-                _currentHealth = Mathf.Clamp(_currentHealth - value, 0, EnemyBase.enemySettings.health);
+                _currentHealth = Mathf.Clamp(value, 0, EnemySettings.health);
                 if (_currentHealth == 0) EnemyBase.Death();
             }
         }
@@ -26,7 +28,7 @@ namespace TheyAreComing
 
         private void Awake()
         {
-            _currentHealth = EnemyBase.enemySettings.health;
+            _currentHealth = EnemySettings.health;
         }
 
         private void OnTriggerEnter(Collider other)
@@ -39,7 +41,7 @@ namespace TheyAreComing
         private void OnTriggerExit(Collider other)
         {
             if (!other.TryGetComponent(out ITriggerable<EnemyCollisionManager> triggerable)) return;
-            triggerable.TriggerEnter(this);
+            triggerable.TriggerExit(this);
         }
 
         public void Damage(int amount)
