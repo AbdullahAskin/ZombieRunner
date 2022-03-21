@@ -6,7 +6,7 @@ namespace TheyAreComing
     public class EnemyStateMovement : EnemyStateBase
     {
         private float _currentSpeed;
-    
+
         public EnemyStateMovement(EnemyStateManager stateManager) : base(stateManager)
         {
         }
@@ -26,11 +26,11 @@ namespace TheyAreComing
         {
             var distance = Vector3.Distance(PlayerTrans.position, EnemyTrans.position);
             if (CharacterSettings.attackRange > distance)
-                //ATTACK
-                // EnemyAnimationController.ToggleWalk(false);
+            {
+                StateManager.SwitchState<EnemyStateAttack>(0);
                 return;
+            }
 
-            var dir = (PlayerTrans.position - EnemyTrans.position).normalized;
             Move();
             Rotate();
         }
@@ -38,13 +38,7 @@ namespace TheyAreComing
         public override void OnCollisionEnter(Collision collision)
         {
         }
-
-        private void Rotate()
-        {
-            var targetRotation = Quaternion.LookRotation(PlayerTrans.position - EnemyTrans.position,Vector3.up);
-            EnemySkinTrans.rotation = Quaternion.Slerp(EnemySkinTrans.rotation, targetRotation, .3f);
-        }
-
+        
         private void Move()
         {
             var step = _currentSpeed * Time.fixedDeltaTime;

@@ -26,5 +26,11 @@ namespace TheyAreComing
         public abstract void ExitState();
         public abstract void UpdateState();
         public abstract void OnCollisionEnter(Collision collision);
+
+        protected void Rotate()
+        {
+            var targetRotation = Quaternion.LookRotation(PlayerTrans.position - EnemyTrans.position, Vector3.up);
+            EnemySkinTrans.rotation = Quaternion.Slerp(EnemySkinTrans.rotation, targetRotation, .3f);
+        }
     }
 }

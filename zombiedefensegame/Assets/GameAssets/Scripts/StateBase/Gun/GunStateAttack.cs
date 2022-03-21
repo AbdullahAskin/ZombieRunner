@@ -8,8 +8,6 @@ namespace TheyAreComing
         {
         }
 
-        private Gun CurrentGun => GunManager.currentGun;
-
         public override void EnterState()
         {
         }
@@ -29,7 +27,7 @@ namespace TheyAreComing
 
             var targetAngle = GunGuide.GetClosestAngle(enemiesInRange);
             if (Mathf.Abs(targetAngle - AimPivotTrans.localEulerAngles.y) < 1f)
-                CurrentGun.Fire();
+                GunManager.Fire();
             UpdateAimTowardsTarget(targetAngle);
         }
 
