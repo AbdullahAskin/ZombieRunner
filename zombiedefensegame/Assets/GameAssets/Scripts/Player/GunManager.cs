@@ -7,33 +7,26 @@ namespace TheyAreComing
     public class GunManager : MonoBehaviour
     {
         public Transform aimPivotTrans;
+        public Transform aimTargetTrans;
         public Gun currentGun;
         public float rotateSpeed;
+        private bool _canFire = true;
+        private Tween _recoilTween;
 
-        private void Awake()
+        public void Fire()
         {
-            ToggleSubscribes(true);
+            if (!_canFire) return;
+            DOVirtual.DelayedCall(currentGun.fireOffset, () => _canFire = true).OnStart(() => _canFire = false);
+            currentGun.Fire();
+            Recoil();
         }
 
-        private void OnDisable()
+        private void Recoil()
         {
-            ToggleSubscribes(false);
+            _recoilTween?.Kill(true);
+            _recoilTween = DOTween.Sequence()
+                .Append(aimTargetTrans.DOLocalMoveY(currentGun.recoilAmount, currentGun.recoilDuration).SetRelative())
+                .Append(aimTargetTrans.DOLocalMoveY(0, currentGun.recoilDuration));
         }
-
-        private void ToggleSubscribes(bool bind)
-        {
-        }
-
-        // public void UpdateAim()
-        // {
-        //     var enemiesInRange = _gunGuide.GetEnemiesInRange();
-        //     if (enemiesInRange.Count == 0) return;
-        //     var targetAngle = _gunGuide.GetClosestAngle(enemiesInRange);
-        //     var currentEuler = AimPivotTrans.localEulerAngles;
-        //     if (Mathf.Abs(targetAngle - currentEuler.y) < 1f) currentGun.Fire();
-        //     var rotateAmount = Mathf.Sign(targetAngle - currentEuler.y) * Time.fixedDeltaTime * rotateSpeed;
-        //     var currentAngle = rotateAmount + currentEuler.y;
-        //     AimPivotTrans.localEulerAngles = Mathf.Clamp(currentAngle, currentAngle, targetAngle) * Vector3.up;
-        // }
     }
 }

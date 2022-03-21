@@ -14,7 +14,7 @@ namespace TheyAreComing
 
         private void Awake()
         {
-            // EnemyManager.EnemyBases.Add(this);
+            EnemyManager.EnemyBases.Add(this);
         }
 
         private void OnDisable()
