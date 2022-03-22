@@ -5,8 +5,9 @@ namespace TheyAreComing
     public class EnemyBase : MonoBehaviour
     {
         public Transform skinTrans;
-        public EnemySettingsScriptableObject enemySettingsScriptable;
+        [SerializeField] private CharacterSettingsScriptableObject characterSettingsScriptable;
         private EnemyStateManager _enemyStateManager;
+        public EnemyCharacterSettings EnemyCharacterSettings => characterSettingsScriptable.EnemyCharacterSettings;
 
         private EnemyStateManager EnemyStateManager =>
             _enemyStateManager ? _enemyStateManager : _enemyStateManager = GetComponent<EnemyStateManager>();

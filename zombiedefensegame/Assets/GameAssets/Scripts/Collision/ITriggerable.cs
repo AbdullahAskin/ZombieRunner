@@ -1,6 +1,6 @@
 namespace TheyAreComing
 {
-    public interface ITriggerable<in Base>
+    public interface ITriggerable<Base> where Base: CollisionManagerBase
     {
         public void TriggerEnter(Base t);
         public void TriggerExit(Base t);
