@@ -16,7 +16,7 @@ namespace TheyAreComing
             ? _enemyBase
             : _enemyBase = GetComponent<EnemyBase>();
 
-        public bool IsAlive => CurrentStates[0].GetType() != typeof(EnemyStateDeath);
+        public override bool IsAlive => CurrentStates[0].GetType() != typeof(EnemyStateDeath);
 
         private void Start()
         {

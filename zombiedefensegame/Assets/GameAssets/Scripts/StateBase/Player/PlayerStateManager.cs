@@ -7,12 +7,17 @@ namespace TheyAreComing
     {
         private GunGuide _gunGuide;
         private GunManager _gunManager;
+        private Player _player;
         private PlayerAnimationController _playerAnimationController;
         private PlayerSplineManager _playerSplineManager;
 
         public PlayerAnimationController PlayerAnimationController => _playerAnimationController
             ? _playerAnimationController
             : _playerAnimationController = GetComponent<PlayerAnimationController>();
+
+        public Player Player => _player
+            ? _player
+            : _player = GetComponent<Player>();
 
         public PlayerSplineManager PlayerSplineManager => _playerSplineManager
             ? _playerSplineManager
@@ -25,6 +30,8 @@ namespace TheyAreComing
         public GunGuide GunGuide => _gunGuide
             ? _gunGuide
             : _gunGuide = GetComponent<GunGuide>();
+
+        public override bool IsAlive => CurrentStates[0].GetType() != typeof(EnemyStateDeath);
 
         private void Start()
         {

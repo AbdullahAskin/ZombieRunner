@@ -15,7 +15,7 @@ namespace TheyAreComing
         {
             const float start = 70;
             const float end = 110;
-            
+
             _movTween = AimPivotTrans.DOLocalRotate(start * Vector3.up, end - start).SetEase(Ease.Linear)
                 .SetSpeedBased()
                 .SetEase(Ease.Linear).OnComplete(() =>

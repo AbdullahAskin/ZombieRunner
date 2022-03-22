@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine;
 
 namespace TheyAreComing
@@ -10,8 +11,8 @@ namespace TheyAreComing
 
         public override void EnterState()
         {
-            EnemyAnimationController.ToggleWalk(false);
             EnemyAnimationController.SetTrigger(EnemyAnimationController.Attack);
+            DOVirtual.Float(CurrentSpeed, 2f, 1f, x => CurrentSpeed = x);
         }
 
         public override void ExitState()
@@ -20,7 +21,8 @@ namespace TheyAreComing
 
         public override void UpdateState()
         {
-            Rotate();
+            Move();
+            Rotate();   
         }
 
         public override void OnCollisionEnter(Collision collision)

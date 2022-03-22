@@ -13,6 +13,8 @@ namespace TheyAreComing
             SplineManager = playerStateManager.PlayerSplineManager;
         }
 
+        protected PlayerCharacterSettings CharacterSettings => PlayerStateManager.Player.PlayerCharacterSettings;
+
         public abstract void EnterState();
         public abstract void ExitState();
         public abstract void UpdateState();

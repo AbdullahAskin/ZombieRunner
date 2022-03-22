@@ -21,6 +21,8 @@ namespace TheyAreComing
             CurrentStates.ForEach(x => x?.OnCollisionEnter(collision));
         }
 
+        public abstract bool IsAlive { get; }
+
         public void SwitchState<T>(int iState) where T : IStateBase
         {
             if (CurrentStates.Count < iState + 1)

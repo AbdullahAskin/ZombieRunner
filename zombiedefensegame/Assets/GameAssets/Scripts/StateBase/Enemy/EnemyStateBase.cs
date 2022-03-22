@@ -4,23 +4,24 @@ namespace TheyAreComing
 {
     public abstract class EnemyStateBase : IStateBase
     {
+        private readonly Transform _enemySkinTrans;
         protected readonly EnemyAnimationController EnemyAnimationController;
-        protected readonly Transform EnemySkinTrans;
         protected readonly Transform EnemyTrans;
         protected readonly Transform PlayerTrans;
         protected readonly EnemyStateManager StateManager;
+        protected float CurrentSpeed;
 
         protected EnemyStateBase(EnemyStateManager stateManager)
         {
             StateManager = stateManager;
             PlayerTrans = EnemyManager.Player.transform;
             EnemyTrans = stateManager.EnemyBase.transform;
-            EnemySkinTrans = stateManager.EnemyBase.skinTrans;
+            _enemySkinTrans = stateManager.EnemyBase.skinTrans;
             EnemyAnimationController = stateManager.EnemyAnimationController;
         }
 
         protected EnemyCharacterSettings CharacterSettings =>
-            StateManager.EnemyBase.enemySettingsScriptable.characterSettings;
+            StateManager.EnemyBase.EnemyCharacterSettings;
 
         public abstract void EnterState();
         public abstract void ExitState();
@@ -30,7 +31,13 @@ namespace TheyAreComing
         protected void Rotate()
         {
             var targetRotation = Quaternion.LookRotation(PlayerTrans.position - EnemyTrans.position, Vector3.up);
-            EnemySkinTrans.rotation = Quaternion.Slerp(EnemySkinTrans.rotation, targetRotation, .3f);
+            _enemySkinTrans.rotation = Quaternion.Slerp(_enemySkinTrans.rotation, targetRotation, .3f);
+        }
+
+        protected void Move()
+        {
+            var step = CurrentSpeed * Time.fixedDeltaTime;
+            EnemyTrans.position = Vector3.MoveTowards(EnemyTrans.position, PlayerTrans.position, step);
         }
     }
 }

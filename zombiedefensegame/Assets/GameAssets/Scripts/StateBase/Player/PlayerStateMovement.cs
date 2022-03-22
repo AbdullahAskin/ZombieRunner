@@ -24,7 +24,7 @@ namespace TheyAreComing
         {
             ToggleInput(true);
             PlayerStateManager.PlayerAnimationController.ToggleWalk(true);
-            PlayerStateManager.PlayerSplineManager.SetSpeed(10f, 1f);
+            PlayerStateManager.PlayerSplineManager.SetSpeed(CharacterSettings.Speed, 1f);
             _horizontalMovementX = PlayerStateManager.PlayerSplineManager.splineMotion.x;
         }
 
