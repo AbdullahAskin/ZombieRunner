@@ -1,4 +1,3 @@
-using DG.Tweening;
 using UnityEngine;
 
 namespace TheyAreComing
@@ -13,7 +12,7 @@ namespace TheyAreComing
         public override void EnterState()
         {
             EnemyAnimationController.ToggleWalk(true);
-            DOVirtual.Float(0, CharacterSettings.Speed, .5f, x => CurrentSpeed = x);
+            SetSpeed(0, CharacterSettings.Speed, .5f);
         }
 
         public override void ExitState()
@@ -23,7 +22,7 @@ namespace TheyAreComing
         public override void UpdateState()
         {
             var distance = Vector3.Distance(PlayerTrans.position, EnemyTrans.position);
-            if (CharacterSettings.AttackRange > distance)
+            if (CharacterSettings.attackRange > distance)
             {
                 StateManager.SwitchState<EnemyStateAttack>(0);
                 return;

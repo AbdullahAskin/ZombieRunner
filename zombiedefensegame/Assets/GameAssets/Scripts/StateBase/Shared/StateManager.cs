@@ -11,6 +11,8 @@ namespace TheyAreComing
         protected List<IStateBase> CurrentStates = new List<IStateBase>();
         protected List<IStateBase> StateBases = new List<IStateBase>();
 
+        public abstract bool IsAlive { get; }
+
         private void FixedUpdate()
         {
             CurrentStates.ToList().ForEach(x => x?.UpdateState());
@@ -20,8 +22,6 @@ namespace TheyAreComing
         {
             CurrentStates.ForEach(x => x?.OnCollisionEnter(collision));
         }
-
-        public abstract bool IsAlive { get; }
 
         public void SwitchState<T>(int iState) where T : IStateBase
         {

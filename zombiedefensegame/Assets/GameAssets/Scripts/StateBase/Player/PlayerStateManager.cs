@@ -2,6 +2,7 @@ using UnityEngine;
 
 namespace TheyAreComing
 {
+    [RequireComponent(typeof(GunGuide))]
     [RequireComponent(typeof(PlayerAnimationController), typeof(PlayerSplineManager))]
     public class PlayerStateManager : StateManager
     {
@@ -31,7 +32,7 @@ namespace TheyAreComing
             ? _gunGuide
             : _gunGuide = GetComponent<GunGuide>();
 
-        public override bool IsAlive => CurrentStates[0].GetType() != typeof(EnemyStateDeath);
+        public override bool IsAlive => CurrentStates[0].GetType() != typeof(PlayerStateDeath);
 
         private void Start()
         {

@@ -1,4 +1,3 @@
-using DG.Tweening;
 using UnityEngine;
 
 namespace TheyAreComing
@@ -11,8 +10,9 @@ namespace TheyAreComing
 
         public override void EnterState()
         {
-            EnemyAnimationController.SetTrigger(EnemyAnimationController.Attack);
-            DOVirtual.Float(CurrentSpeed, 2f, 1f, x => CurrentSpeed = x);
+            SetRelativeSpeed(-1f, .5f);
+            var isMirroredAttack = PlayerTrans.position.x > EnemyTrans.position.x;
+            EnemyAnimationController.TriggerAttack(isMirroredAttack);
         }
 
         public override void ExitState()
@@ -22,7 +22,7 @@ namespace TheyAreComing
         public override void UpdateState()
         {
             Move();
-            Rotate();   
+            Rotate();
         }
 
         public override void OnCollisionEnter(Collision collision)
