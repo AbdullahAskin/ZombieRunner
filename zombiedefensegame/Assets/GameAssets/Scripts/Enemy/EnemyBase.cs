@@ -9,9 +9,8 @@ namespace TheyAreComing
         private EnemyStateManager _enemyStateManager;
         public EnemyCharacterSettings EnemyCharacterSettings => characterSettingsScriptable.EnemyCharacterSettings;
 
-        private EnemyStateManager EnemyStateManager =>
+        public EnemyStateManager stateManager =>
             _enemyStateManager ? _enemyStateManager : _enemyStateManager = GetComponent<EnemyStateManager>();
-
 
         private void Awake()
         {

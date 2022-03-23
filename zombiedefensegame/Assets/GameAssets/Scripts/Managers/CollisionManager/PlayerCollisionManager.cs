@@ -44,10 +44,10 @@ namespace TheyAreComing
 
         public override void Damage(int amount)
         {
+            base.Damage(amount);
             CameraService.ShakeCam();
-            AnimationController.SetTrigger(PlayerAnimationController.Hit);
-            CurrentHealth -= amount;
-            // explosionParticle.Play();
+            if (CurrentHealth == 0) Death();
+            else AnimationController.SetTrigger(PlayerAnimationController.Hit);
         }
     }
 }

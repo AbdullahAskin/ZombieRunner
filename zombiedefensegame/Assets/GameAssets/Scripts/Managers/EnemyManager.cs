@@ -28,7 +28,7 @@ namespace TheyAreComing
         {
             if (bind)
             {
-                _updateEnemyTween = DOVirtual.DelayedCall(.4f, UpdateEnemy).SetLoops(-1);
+                _updateEnemyTween = DOVirtual.DelayedCall(.4f, UpdateEnemyList).SetLoops(-1);
             }
             else
             {
@@ -37,9 +37,14 @@ namespace TheyAreComing
             }
         }
 
-        private void UpdateEnemy()
+        private void UpdateEnemyList()
         {
             EnemyBases.RemoveAll(x => x.transform.position.z - .5f < Player.transform.position.z);
+        }
+
+        public static void StopEnemies()
+        {
+            EnemyBases.ForEach(x => x.stateManager.SwitchState<EnemyEmptyState>(0));
         }
     }
 }

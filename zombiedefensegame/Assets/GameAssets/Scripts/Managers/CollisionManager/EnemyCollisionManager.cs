@@ -32,7 +32,7 @@ namespace TheyAreComing
 
         public override void Damage(int amount)
         {
-            CurrentHealth -= amount;
+            base.Damage(amount);
             explosionParticle.Play();
         }
     }

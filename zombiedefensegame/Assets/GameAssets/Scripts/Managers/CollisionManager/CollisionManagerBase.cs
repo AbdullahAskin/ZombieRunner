@@ -14,11 +14,7 @@ namespace TheyAreComing
         protected int CurrentHealth
         {
             get => _currentHealth;
-            set
-            {
-                _currentHealth = Mathf.Clamp(value, 0, MAXHealth);
-                if (_currentHealth == 0) Death();
-            }
+            set => _currentHealth = Mathf.Clamp(value, 0, MAXHealth);
         }
 
         protected abstract int MAXHealth { get; }
@@ -27,8 +23,11 @@ namespace TheyAreComing
         {
             _currentHealth = MAXHealth;
         }
-        
-        public abstract void Damage(int amount);
+
+        public virtual void Damage(int amount)
+        {
+            CurrentHealth -= amount;
+        }
 
         protected abstract void Death();
     }
