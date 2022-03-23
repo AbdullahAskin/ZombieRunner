@@ -1,23 +1,22 @@
-using UnityEngine;
-
 namespace TheyAreComing
 {
     public abstract class PlayerStateBase : IStateBase
     {
-        protected PlayerStateManager PlayerStateManager;
+        protected PlayerAnimationController AnimationController;
         protected PlayerSplineManager SplineManager;
+        protected PlayerStateManager StateManager;
 
-        protected PlayerStateBase(PlayerStateManager playerStateManager)
+        protected PlayerStateBase(PlayerStateManager stateManager)
         {
-            PlayerStateManager = playerStateManager;
-            SplineManager = playerStateManager.PlayerSplineManager;
+            StateManager = stateManager;
+            AnimationController = stateManager.PlayerAnimationController;
+            SplineManager = stateManager.PlayerSplineManager;
         }
 
-        protected PlayerCharacterSettings CharacterSettings => PlayerStateManager.Player.PlayerCharacterSettings;
+        protected PlayerCharacterSettings CharacterSettings => StateManager.Player.PlayerCharacterSettings;
 
         public abstract void EnterState();
         public abstract void ExitState();
         public abstract void UpdateState();
-        public abstract void OnCollisionEnter(Collision collision);
     }
 }

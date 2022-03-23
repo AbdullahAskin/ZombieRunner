@@ -18,11 +18,6 @@ namespace TheyAreComing
             CurrentStates.ToList().ForEach(x => x?.UpdateState());
         }
 
-        public void OnCollisionEnter(Collision collision)
-        {
-            CurrentStates.ForEach(x => x?.OnCollisionEnter(collision));
-        }
-
         public void SwitchState<T>(int iState) where T : IStateBase
         {
             if (CurrentStates.Count < iState + 1)
@@ -33,7 +28,7 @@ namespace TheyAreComing
             CurrentStates[iState]?.EnterState();
         }
 
-        protected List<IStateBase> GetStateBases<T>(params object[] constructorArgs) where T : IStateBase
+        protected IEnumerable<IStateBase> GetStateBases<T>(params object[] constructorArgs) where T : IStateBase
         {
             var stateBases = new List<IStateBase>();
             Assembly.GetAssembly(typeof(T))

@@ -4,15 +4,15 @@ namespace TheyAreComing
 {
     public class PlayerStateIdle : PlayerStateBase
     {
-        public PlayerStateIdle(PlayerStateManager playerStateManager) : base(
-            playerStateManager)
+        public PlayerStateIdle(PlayerStateManager stateManager) : base(
+            stateManager)
         {
         }
 
         public override void EnterState()
         {
-            PlayerStateManager.PlayerAnimationController.ToggleWalk(false);
-            PlayerStateManager.PlayerSplineManager.SetSpeed(0f, 1f);
+            StateManager.PlayerAnimationController.ToggleWalk(false);
+            StateManager.PlayerSplineManager.SetSpeed(0f, 1f);
         }
 
         public override void ExitState()
@@ -20,10 +20,6 @@ namespace TheyAreComing
         }
 
         public override void UpdateState()
-        {
-        }
-
-        public override void OnCollisionEnter(Collision collision)
         {
         }
     }

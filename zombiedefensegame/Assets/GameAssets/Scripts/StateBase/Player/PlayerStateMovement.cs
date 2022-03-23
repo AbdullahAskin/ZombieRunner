@@ -9,7 +9,7 @@ namespace TheyAreComing
         private readonly Vector2 _horizontalLimit;
         private float _horizontalMovementX;
 
-        public PlayerStateMovement(PlayerStateManager playerStateManager) : base(playerStateManager)
+        public PlayerStateMovement(PlayerStateManager stateManager) : base(stateManager)
         {
             _horizontalLimit = SplineManager.horizontalLimit;
         }
@@ -23,9 +23,9 @@ namespace TheyAreComing
         public override void EnterState()
         {
             ToggleInput(true);
-            PlayerStateManager.PlayerAnimationController.ToggleWalk(true);
-            PlayerStateManager.PlayerSplineManager.SetSpeed(CharacterSettings.Speed, 1f);
-            _horizontalMovementX = PlayerStateManager.PlayerSplineManager.splineMotion.x;
+            AnimationController.ToggleWalk(true);
+            SplineManager.SetSpeed(CharacterSettings.Speed, 1f);
+            _horizontalMovementX = StateManager.PlayerSplineManager.SplineMotion.x;
         }
 
         public override void ExitState()
@@ -35,12 +35,8 @@ namespace TheyAreComing
 
         public override void UpdateState()
         {
-            var targetMotionX = Mathf.Lerp(SplineManager.splineMotion.x, _horizontalMovementX, .25f);
-            SplineManager.splineMotion = new Vector2(targetMotionX, 0);
-        }
-
-        public override void OnCollisionEnter(Collision collision)
-        {
+            var targetMotionX = Mathf.Lerp(SplineManager.SplineMotion.x, _horizontalMovementX, .25f);
+            SplineManager.SplineMotion = new Vector2(targetMotionX, 0);
         }
 
         private void HorizontalMovement(LeanFinger leanFinger)

@@ -24,8 +24,5 @@ namespace TheyAreComing
             StateManager.SwitchState<EnemyStateMovement>(0);
         }
 
-        public override void OnCollisionEnter(Collision collision)
-        {
-        }
     }
 }

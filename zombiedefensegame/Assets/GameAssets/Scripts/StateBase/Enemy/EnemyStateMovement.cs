@@ -1,9 +1,12 @@
+using DG.Tweening;
 using UnityEngine;
 
 namespace TheyAreComing
 {
     public class EnemyStateMovement : EnemyStateBase
     {
+        private Tween _movementTween;
+
         public EnemyStateMovement(EnemyStateManager stateManager) : base(stateManager)
         {
         }
@@ -12,11 +15,12 @@ namespace TheyAreComing
         public override void EnterState()
         {
             EnemyAnimationController.ToggleWalk(true);
-            SetSpeed(0, CharacterSettings.Speed, .5f);
+            _movementTween = SetSpeed(0, CharacterSettings.Speed, .5f);
         }
 
         public override void ExitState()
         {
+            _movementTween?.Kill();
         }
 
         public override void UpdateState()
@@ -32,8 +36,5 @@ namespace TheyAreComing
             Rotate();
         }
 
-        public override void OnCollisionEnter(Collision collision)
-        {
-        }
     }
 }
