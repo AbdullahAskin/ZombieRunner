@@ -12,20 +12,20 @@ namespace TheyAreComing
         public Vector2 horizontalLimit;
         private SplineFollower _splineFollower;
 
-        public SplineFollower splineFollower => 
+        public SplineFollower SplineFollower =>
             _splineFollower ? _splineFollower : _splineFollower = GetComponent<SplineFollower>();
 
-        public Vector2 splineMotion
+        public Vector2 SplineMotion
         {
-            get => splineFollower.motion.offset;
-            set => splineFollower.motion.offset =
+            get => SplineFollower.motion.offset;
+            set => SplineFollower.motion.offset =
                 new Vector2(Mathf.Clamp(value.x, horizontalLimit.x, horizontalLimit.y), 0);
         }
 
         public void SetSpeed(float targetSpeed, float duration)
         {
-            DOVirtual.Float(splineFollower.followSpeed, targetSpeed, duration,
-                x => { splineFollower.followSpeed = x; }).SetEase(Ease.Linear);
+            DOVirtual.Float(SplineFollower.followSpeed, targetSpeed, duration,
+                x => { SplineFollower.followSpeed = x; }).SetEase(Ease.Linear);
         }
     }
 }
