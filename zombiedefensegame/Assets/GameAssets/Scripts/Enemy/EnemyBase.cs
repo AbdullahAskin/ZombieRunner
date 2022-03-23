@@ -25,7 +25,6 @@ namespace TheyAreComing
 
         public void Death()
         {
-            EnemyStateManager.SwitchState<EnemyStateDeath>(0);
             EnemyManager.EnemyBases.Remove(this);
         }
     }

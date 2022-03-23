@@ -9,18 +9,18 @@ namespace TheyAreComing
         [SerializeField] private float lifeTime;
         [SerializeField] private float speed;
         [SerializeField] private int damage;
-        private Tween _movementTween;
         private Tween _lifeTimeTween;
+        private Tween _movementTween;
+
+        private void OnEnable()
+        {
+            _lifeTimeTween = DOVirtual.DelayedCall(lifeTime, () => LeanPool.Despawn(gameObject));
+        }
 
         private void OnDisable()
         {
             _movementTween?.Kill();
             _lifeTimeTween?.Kill();
-        }
-
-        private void OnEnable()
-        {
-            _lifeTimeTween = DOVirtual.DelayedCall(lifeTime, () => LeanPool.Despawn(gameObject));
         }
 
         public void TriggerEnter(EnemyCollisionManager collisionManager)

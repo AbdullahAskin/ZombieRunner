@@ -25,8 +25,10 @@ namespace TheyAreComing
         {
             _recoilTween?.Kill(true);
             _recoilTween = DOTween.Sequence()
-                .Append(aimTargetTrans.DOLocalMoveY(currentGun.recoilAmount, currentGun.recoilDuration).SetRelative())
-                .Append(aimTargetTrans.DOLocalMoveY(0, currentGun.recoilDuration));
+                .Append(aimTargetTrans.DOLocalMoveY(-currentGun.recoilAmount, currentGun.recoilDuration - .02f)
+                    .SetRelative()
+                    .SetEase(Ease.OutSine))
+                .Append(aimTargetTrans.DOLocalMoveY(0, currentGun.recoilDuration + .02f).SetEase(Ease.InSine));
         }
     }
 }
