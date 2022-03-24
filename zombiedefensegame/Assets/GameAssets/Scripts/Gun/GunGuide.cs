@@ -34,13 +34,13 @@ namespace TheyAreComing
 
         public List<EnemyBase> GetEnemiesInRange()
         {
-            return EnemyManager.EnemyBases.FindAll(x =>
+            return EnemyManager.TargetEnemyBases.FindAll(x =>
                 Vector3.Distance(x.transform.position, transform.position) < range);
         }
 
         public bool IsAnyEnemyShootable()
         {
-            return (from enemyBase in EnemyManager.EnemyBases
+            return (from enemyBase in EnemyManager.TargetEnemyBases
                 where Vector3.Distance(enemyBase.transform.position, transform.position) < range
                 select FromDirectionToAngle(enemyBase.transform.position - aimPivotTrans.position)).Any(currentAngle =>
                 !(currentAngle < aimLimit.x) && !(currentAngle > aimLimit.y));
