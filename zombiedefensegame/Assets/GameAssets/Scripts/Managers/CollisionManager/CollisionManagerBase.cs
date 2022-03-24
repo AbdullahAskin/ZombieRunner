@@ -5,6 +5,7 @@ namespace TheyAreComing
     [RequireComponent(typeof(StateManager))]
     public abstract class CollisionManagerBase : MonoBehaviour
     {
+        [SerializeField] private ParticleSystem damageParticle;
         private int _currentHealth;
         private StateManager _stateManager;
 
@@ -26,6 +27,7 @@ namespace TheyAreComing
 
         public virtual void Damage(int amount)
         {
+            damageParticle.Play();
             CurrentHealth -= amount;
         }
 

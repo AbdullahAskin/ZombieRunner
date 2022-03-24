@@ -2,9 +2,9 @@ using UnityEngine;
 
 namespace TheyAreComing
 {
-    public class EnemyEmptyState : EnemyStateBase
+    public class EnemyStateEmpty : EnemyStateBase
     {
-        public EnemyEmptyState(EnemyStateManager stateManager) : base(stateManager)
+        public EnemyStateEmpty(EnemyStateManager stateManager) : base(stateManager)
         {
         }
 

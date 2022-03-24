@@ -4,7 +4,6 @@ namespace TheyAreComing
 {
     public class EnemyCollisionManager : CollisionManagerBase
     {
-        [SerializeField] private ParticleSystem explosionParticle;
         private EnemyBase _enemyBase;
         private EnemyBase EnemyBase => _enemyBase ? _enemyBase : _enemyBase = GetComponent<EnemyBase>();
 
@@ -33,7 +32,7 @@ namespace TheyAreComing
         public override void Damage(int amount)
         {
             base.Damage(amount);
-            explosionParticle.Play();
+            if (CurrentHealth == 0) Death();
         }
     }
 }

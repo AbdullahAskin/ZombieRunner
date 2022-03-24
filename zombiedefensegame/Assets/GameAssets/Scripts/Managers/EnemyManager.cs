@@ -6,13 +6,9 @@ namespace TheyAreComing
 {
     public class EnemyManager : MonoBehaviour
     {
-        public static List<EnemyBase> EnemyBases = new List<EnemyBase>();
-        private static Player _player;
+        private static readonly List<EnemyBase> AllEnemyBases = new List<EnemyBase>();
         private Tween _updateEnemyTween;
-
-        public static Player Player => _player
-            ? _player
-            : _player = FindObjectOfType<Player>();
+        public static List<EnemyBase> TargetEnemyBases { get; } = new List<EnemyBase>();
 
         private void Awake()
         {
@@ -24,6 +20,17 @@ namespace TheyAreComing
             ToggleSubscribes(false);
         }
 
+        public static void Add(EnemyBase enemyBase)
+        {
+            TargetEnemyBases.Add(enemyBase);
+            AllEnemyBases.Add(enemyBase);
+        }
+
+        public static void Remove(EnemyBase enemyBase)
+        {
+            TargetEnemyBases.Remove(enemyBase);
+        }
+
         private void ToggleSubscribes(bool bind)
         {
             if (bind)
@@ -33,18 +40,20 @@ namespace TheyAreComing
             else
             {
                 _updateEnemyTween?.Kill();
-                EnemyBases.Clear();
+                AllEnemyBases?.Clear();
+                TargetEnemyBases?.Clear();
             }
         }
 
         private void UpdateEnemyList()
         {
-            EnemyBases.RemoveAll(x => x.transform.position.z - .5f < Player.transform.position.z);
+            TargetEnemyBases.RemoveAll(x => x.transform.position.z - .5f < GameManager.Player.transform.position.z);
         }
 
-        public static void StopEnemies()
+        public static void ToggleEnemies(bool bind)
         {
-            EnemyBases.ForEach(x => x.stateManager.SwitchState<EnemyEmptyState>(0));
+            if (bind) AllEnemyBases.ForEach(x => x.stateManager.SwitchState<EnemyStateIdle>(0));
+            else AllEnemyBases.ForEach(x => x.stateManager.SwitchState<EnemyStateEmpty>(0));
         }
     }
 }

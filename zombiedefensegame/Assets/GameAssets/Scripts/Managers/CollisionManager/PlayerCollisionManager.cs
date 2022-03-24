@@ -1,3 +1,4 @@
+using MoreMountains.NiceVibrations;
 using Service;
 using UnityEngine;
 
@@ -5,7 +6,6 @@ namespace TheyAreComing
 {
     public class PlayerCollisionManager : CollisionManagerBase
     {
-        [SerializeField] private ParticleSystem explosionParticle;
         private PlayerAnimationController _animationController;
         private CameraService _cameraService;
         private Player _player;
@@ -45,6 +45,7 @@ namespace TheyAreComing
         public override void Damage(int amount)
         {
             base.Damage(amount);
+            MMVibrationManager.Haptic(HapticTypes.MediumImpact);
             CameraService.ShakeCam();
             if (CurrentHealth == 0) Death();
             else AnimationController.SetTrigger(PlayerAnimationController.Hit);

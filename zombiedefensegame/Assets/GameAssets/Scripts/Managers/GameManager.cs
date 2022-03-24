@@ -3,15 +3,27 @@ using UnityEngine;
 
 namespace TheyAreComing
 {
-    public class GameManager : MonoBehaviour,IGameStateObserver
+    public class GameManager : MonoBehaviour, IGameStateObserver
     {
-        //TODO Will be removed with zenject
-        [SerializeField] private Player player;
+        private static Player _player;
         private GameService _gameService;
-        private GameService gameService => _gameService ?? (_gameService = ServiceManager.GetService<GameService>());
 
-        private void Start()=> gameService.ToggleObserver(this,true);
-        private void OnDisable()=> gameService.ToggleObserver(this,false);
+        public static Player Player => _player
+            ? _player
+            : _player = FindObjectOfType<Player>();
+
+        private GameService GameService =>
+            _gameService ? _gameService : _gameService = ServiceManager.GetService<GameService>();
+
+        private void Start()
+        {
+            GameService.ToggleObserver(this, true);
+        }
+
+        private void OnDisable()
+        {
+            GameService.ToggleObserver(this, false);
+        }
 
         public void OnGameStateChange(GameState gameState)
         {
@@ -20,13 +32,19 @@ namespace TheyAreComing
                 case GameState.Ready:
                     break;
                 case GameState.Play:
-                    player.Init();
+                    ToggleCharacters(true);
                     break;
                 case GameState.Fail:
                     break;
                 case GameState.Won:
                     break;
             }
+        }
+
+        public static void ToggleCharacters(bool bind)
+        {
+            Player.ToggleState(bind);
+            EnemyManager.ToggleEnemies(bind);
         }
     }
 }
