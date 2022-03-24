@@ -16,7 +16,8 @@ namespace TheyAreComing
         public void Fire()
         {
             if (!_canFire) return;
-            DOVirtual.DelayedCall(currentGun.fireOffset, () => _canFire = true).OnStart(() => _canFire = false);
+            DOVirtual.DelayedCall(currentGun.fireOffset, () => _canFire = true).OnStart(() => _canFire = false)
+                .SetUpdate(UpdateType.Fixed);
             currentGun.Fire();
             Recoil();
         }

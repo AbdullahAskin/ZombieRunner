@@ -11,9 +11,9 @@ namespace TheyAreComing
         public void OnAttack()
         {
             var damage = EnemyBase.EnemyCharacterSettings.damage;
-            var player = EnemyManager.Player;
+            var player = GameManager.Player;
             var dis = Vector3.Distance(EnemyBase.transform.position, player.transform.position);
-            if (dis < attackEffectDistance) player.PlayerCollisionManager.Damage(damage);
+            if (dis < attackEffectDistance && EnemyBase.IsAlive) player.PlayerCollisionManager.Damage(damage);
         }
     }
 }

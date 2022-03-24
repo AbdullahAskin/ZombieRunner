@@ -31,10 +31,6 @@ namespace TheyAreComing
             UpdateAimTowardsTarget(targetAngle);
         }
 
-        public override void OnCollisionEnter(Collision collision)
-        {
-        }
-
         private void UpdateAimTowardsTarget(float targetAngle)
         {
             var currentEuler = AimPivotTrans.localEulerAngles;

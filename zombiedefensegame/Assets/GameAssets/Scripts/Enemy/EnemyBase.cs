@@ -12,19 +12,21 @@ namespace TheyAreComing
         public EnemyStateManager stateManager =>
             _enemyStateManager ? _enemyStateManager : _enemyStateManager = GetComponent<EnemyStateManager>();
 
+        public bool IsAlive { get; set; } = true;
+
         private void Awake()
         {
-            EnemyManager.EnemyBases.Add(this);
+            EnemyManager.Add(this);
         }
 
         private void OnDisable()
         {
-            EnemyManager.EnemyBases.Remove(this);
+            EnemyManager.Remove(this);
         }
 
         public void Death()
         {
-            EnemyManager.EnemyBases.Remove(this);
+            EnemyManager.Remove(this);
         }
     }
 }

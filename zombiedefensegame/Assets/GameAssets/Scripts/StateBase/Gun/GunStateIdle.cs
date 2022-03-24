@@ -36,9 +36,5 @@ namespace TheyAreComing
         {
             if (GunGuide.IsAnyEnemyShootable()) StateManager.SwitchState<GunStateAttack>(1);
         }
-
-        public override void OnCollisionEnter(Collision collision)
-        {
-        }
     }
 }

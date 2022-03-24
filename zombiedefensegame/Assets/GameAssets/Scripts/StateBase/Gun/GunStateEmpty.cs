@@ -1,15 +1,13 @@
 namespace TheyAreComing
 {
-    public class PlayerStateDeath : PlayerStateBase
+    public class GunStateEmpty : GunStateBase
     {
-        public PlayerStateDeath(PlayerStateManager stateManager) : base(stateManager)
+        public GunStateEmpty(PlayerStateManager stateManager) : base(stateManager)
         {
         }
 
         public override void EnterState()
         {
-            SplineManager.SetSpeed(0f, 0f);
-            AnimationController.OnDeath();
         }
 
         public override void ExitState()

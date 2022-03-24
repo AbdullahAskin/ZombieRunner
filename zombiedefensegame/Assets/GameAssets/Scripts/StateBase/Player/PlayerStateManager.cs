@@ -1,3 +1,4 @@
+using ExampleNamespace;
 using UnityEngine;
 
 namespace TheyAreComing
@@ -38,8 +39,8 @@ namespace TheyAreComing
         {
             StateBases.AddRange(GetStateBases<PlayerStateBase>(this));
             StateBases.AddRange(GetStateBases<GunStateBase>(this));
-            SwitchState<PlayerStateIdle>(0);
-            SwitchState<GunStateIdle>(1);
+            SwitchState<PlayerStateEmpty>(0);
+            SwitchState<GunStateEmpty>(1);
         }
     }
 }
