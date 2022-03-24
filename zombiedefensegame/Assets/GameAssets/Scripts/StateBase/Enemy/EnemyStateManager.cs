@@ -21,7 +21,7 @@ namespace TheyAreComing
         private void Start()
         {
             StateBases.AddRange(GetStateBases<EnemyStateBase>(this));
-            SwitchState<EnemyStateIdle>(0);
+            SwitchState<EnemyStateEmpty>(0);
         }
     }
 }

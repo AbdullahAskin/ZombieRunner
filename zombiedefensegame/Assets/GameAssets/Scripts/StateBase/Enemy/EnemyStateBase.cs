@@ -15,7 +15,7 @@ namespace TheyAreComing
         protected EnemyStateBase(EnemyStateManager stateManager)
         {
             StateManager = stateManager;
-            PlayerTrans = EnemyManager.Player.transform;
+            PlayerTrans = GameManager.Player.transform;
             EnemyTrans = stateManager.EnemyBase.transform;
             _enemySkinTrans = stateManager.EnemyBase.skinTrans;
             EnemyAnimationController = stateManager.EnemyAnimationController;

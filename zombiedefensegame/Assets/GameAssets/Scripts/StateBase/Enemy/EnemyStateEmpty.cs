@@ -1,5 +1,3 @@
-using UnityEngine;
-
 namespace TheyAreComing
 {
     public class EnemyStateEmpty : EnemyStateBase
@@ -11,7 +9,7 @@ namespace TheyAreComing
         public override void EnterState()
         {
             EnemyAnimationController.ToggleWalk(false);
-            SetRelativeSpeed(0f,.5f);
+            SetRelativeSpeed(0f, .5f);
         }
 
         public override void ExitState()
@@ -21,6 +19,5 @@ namespace TheyAreComing
         public override void UpdateState()
         {
         }
-
     }
 }

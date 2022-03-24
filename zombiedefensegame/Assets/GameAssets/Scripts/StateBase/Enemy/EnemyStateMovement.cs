@@ -35,6 +35,5 @@ namespace TheyAreComing
             Move();
             Rotate();
         }
-
     }
 }
