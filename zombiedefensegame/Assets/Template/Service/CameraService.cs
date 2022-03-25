@@ -1,4 +1,5 @@
 using Cinemachine;
+using DG.Tweening;
 using TheyAreComing;
 using UnityEngine;
 
@@ -48,6 +49,11 @@ namespace Service
             if(_activeCamera) _activeCamera.enabled = false;
             targetCam.enabled = true;
             _activeCamera = targetCam;
+        }
+
+        public void ShakeCam()
+        {
+            _activeCamera.transform.DOShakePosition(.25f, Vector2.one * .25f, 25, 0);
         }
     }
 }

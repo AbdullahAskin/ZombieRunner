@@ -11,7 +11,7 @@ namespace Service
 
         public override void AppearExtension()
         {
-            transform.DOScale(endValue, duration).SetEase(ease);
+            transform.DOScale(targetValue, duration).SetEase(ease);
         }
     }
 }

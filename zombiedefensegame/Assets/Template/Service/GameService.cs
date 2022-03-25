@@ -5,8 +5,8 @@ namespace Service
 {
     public class GameService : ServiceBase
     {
-        private GameState _currentGameState;
         private readonly List<IGameStateObserver> _gameStateObservers = new List<IGameStateObserver>();
+        private GameState _currentGameState;
 
         public void NotifyGameStateChange(GameState gameState)
         {
@@ -19,10 +19,6 @@ namespace Service
         {
             if (bind) _gameStateObservers.Add(gameStateObserver);
             else _gameStateObservers.Remove(gameStateObserver);
-        }
-
-        public void OnGameWon()
-        {
         }
     }
 
