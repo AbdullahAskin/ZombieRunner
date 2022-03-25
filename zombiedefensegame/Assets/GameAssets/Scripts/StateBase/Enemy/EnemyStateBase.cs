@@ -10,6 +10,7 @@ namespace TheyAreComing
         protected readonly Transform EnemyTrans;
         protected readonly Transform PlayerTrans;
         protected readonly EnemyStateManager StateManager;
+
         private float _currentSpeed;
 
         protected EnemyStateBase(EnemyStateManager stateManager)
