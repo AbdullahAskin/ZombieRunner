@@ -6,6 +6,7 @@ namespace TheyAreComing
 {
     public class PlayerCollisionManager : CollisionManagerBase
     {
+        [SerializeField] private ParticleSystem damageParticle;
         private PlayerAnimationController _animationController;
         private CameraService _cameraService;
         private Player _player;
@@ -42,9 +43,9 @@ namespace TheyAreComing
             Player.Death();
         }
 
-        public override void Damage(int amount)
+        public void Damage(int amount)
         {
-            base.Damage(amount);
+            CalculateHealth(amount);
             MMVibrationManager.Haptic(HapticTypes.MediumImpact);
             CameraService.ShakeCam();
             if (CurrentHealth == 0) Death();

@@ -6,8 +6,9 @@ namespace TheyAreComing
 {
     public class EnemyManager : MonoBehaviour
     {
-        private static readonly List<EnemyBase> AllEnemyBases = new List<EnemyBase>();
+        public static readonly List<EnemyBase> AllEnemyBases = new List<EnemyBase>();
         private Tween _updateEnemyTween;
+
         public static List<EnemyBase> TargetEnemyBases { get; } = new List<EnemyBase>();
 
         private void Awake()
@@ -47,13 +48,15 @@ namespace TheyAreComing
 
         private void UpdateEnemyList()
         {
-            TargetEnemyBases.RemoveAll(x => x.transform.position.z - .5f < GameManager.Player.transform.position.z);
+            TargetEnemyBases.RemoveAll(x =>
+                x.transform.position.z - 3f <
+                GameManager.Player.transform.position.z);
         }
 
         public static void ToggleEnemies(bool bind)
         {
-            if (bind) AllEnemyBases.ForEach(x => x.stateManager.SwitchState<EnemyStateIdle>(0));
-            else AllEnemyBases.ForEach(x => x.stateManager.SwitchState<EnemyStateEmpty>(0));
+            if (bind) AllEnemyBases.ForEach(x => x.StateManager.SwitchState<EnemyStateIdle>(0));
+            else AllEnemyBases.ForEach(x => x.StateManager.SwitchState<EnemyStateEmpty>(0));
         }
     }
 }
