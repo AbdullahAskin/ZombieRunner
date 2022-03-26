@@ -1,5 +1,6 @@
 using DG.Tweening;
 using ExampleNamespace;
+using MoreMountains.NiceVibrations;
 using RootMotion.FinalIK;
 using Service;
 using UnityEngine;
@@ -9,8 +10,8 @@ namespace TheyAreComing
     [RequireComponent(typeof(PlayerStateManager))]
     public class Player : MonoBehaviour
     {
+        public AimIK aimIK;
         [SerializeField] private CharacterSettingsScriptableObject characterSettingsScriptableObject;
-        [SerializeField] private AimIK aimIK;
         [SerializeField] private FullBodyBipedIK fullBodyBipedIK;
         private GameService _gameService;
         private PlayerCollisionManager _playerCollisionManager;
@@ -49,6 +50,7 @@ namespace TheyAreComing
         public void Death()
         {
             IsAlive = false;
+            MMVibrationManager.Haptic(HapticTypes.Failure);
             DOVirtual.Float(1, 0, .5f, x =>
             {
                 aimIK.solver.IKPositionWeight = x;

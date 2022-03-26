@@ -15,6 +15,8 @@ namespace TheyAreComing
         public SplineFollower SplineFollower =>
             _splineFollower ? _splineFollower : _splineFollower = GetComponent<SplineFollower>();
 
+        public float CurrentSpeed => SplineFollower.followSpeed;
+
         public Vector2 SplineMotion
         {
             get => SplineFollower.motion.offset;
