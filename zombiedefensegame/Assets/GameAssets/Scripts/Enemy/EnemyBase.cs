@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace TheyAreComing
@@ -9,7 +11,7 @@ namespace TheyAreComing
         private EnemyStateManager _enemyStateManager;
         public EnemyCharacterSettings EnemyCharacterSettings => characterSettingsScriptable.EnemyCharacterSettings;
 
-        public EnemyStateManager stateManager =>
+        public EnemyStateManager StateManager =>
             _enemyStateManager ? _enemyStateManager : _enemyStateManager = GetComponent<EnemyStateManager>();
 
         public bool IsAlive { get; set; } = true;

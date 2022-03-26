@@ -6,9 +6,10 @@ namespace TheyAreComing
 {
     public class Projectile : MonoBehaviour, ITriggerable<EnemyCollisionManager>
     {
+        [SerializeField] private int gunIndex;
         [SerializeField] private float lifeTime;
         [SerializeField] private float speed;
-        [SerializeField] private int damage;
+        [SerializeField] private Vector2 damageLimit;
         private Tween _lifeTimeTween;
         private Tween _movementTween;
 
@@ -26,7 +27,7 @@ namespace TheyAreComing
         public void TriggerEnter(EnemyCollisionManager collisionManager)
         {
             _movementTween?.Kill();
-            collisionManager.Damage(damage);
+            collisionManager.Damage((int) Random.Range(damageLimit.x, damageLimit.y), gunIndex);
             LeanPool.Despawn(gameObject, 2f);
         }
 

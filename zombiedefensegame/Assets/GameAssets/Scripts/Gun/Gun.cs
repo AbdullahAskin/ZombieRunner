@@ -5,6 +5,7 @@ namespace TheyAreComing
 {
     public class Gun : MonoBehaviour
     {
+        public Transform aimTrans;
         [SerializeField] private Transform projectileSpawnTrans;
         [SerializeField] private Projectile projectilePrefab;
         [SerializeField] private ParticleSystem muzzleParticle;
@@ -19,4 +20,4 @@ namespace TheyAreComing
             projectile.Init(projectileSpawnTrans.transform.forward);
         }
     }
-} 
+}

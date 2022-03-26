@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -32,12 +31,6 @@ namespace TheyAreComing
             return angle;
         }
 
-        public List<EnemyBase> GetEnemiesInRange()
-        {
-            return EnemyManager.TargetEnemyBases.FindAll(x =>
-                Vector3.Distance(x.transform.position, transform.position) < range);
-        }
-
         public bool IsAnyEnemyShootable()
         {
             return (from enemyBase in EnemyManager.TargetEnemyBases
@@ -46,17 +39,21 @@ namespace TheyAreComing
                 !(currentAngle < aimLimit.x) && !(currentAngle > aimLimit.y));
         }
 
-        public float GetClosestAngle(IEnumerable<EnemyBase> enemiesInRange)
+        public float GetClosestAngle()
         {
             var targetAngle = 90f;
             var minDis = float.MaxValue;
 
-            foreach (var enemyBase in enemiesInRange)
+            foreach (var enemyBase in EnemyManager.TargetEnemyBases)
             {
-                var currentAngle = FromDirectionToAngle(enemyBase.transform.position - aimPivotTrans.position);
-                if (currentAngle < aimLimit.x || currentAngle > aimLimit.y) continue;
+                //Is enemy in min range
                 var currentDis = Vector3.Distance(aimPivotTrans.position, enemyBase.transform.position);
                 if (currentDis > minDis) continue;
+
+                //Is enemy shootable
+                var currentAngle = FromDirectionToAngle(enemyBase.transform.position - aimPivotTrans.position);
+                if (currentAngle < aimLimit.x || currentAngle > aimLimit.y) continue;
+
                 minDis = currentDis;
                 targetAngle = currentAngle;
             }
