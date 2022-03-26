@@ -15,7 +15,7 @@ namespace TheyAreComing
             GunGuide = stateManager.GunGuide;
         }
 
-        protected Transform AimPivotTrans => GunManager.aimPivotTrans;
+        protected Transform AimPivotTrans => GunGuide.aimPivotTrans;
 
         public abstract void EnterState();
         public abstract void ExitState();

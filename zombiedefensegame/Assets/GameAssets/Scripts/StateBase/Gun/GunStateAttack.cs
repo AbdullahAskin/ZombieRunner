@@ -18,14 +18,13 @@ namespace TheyAreComing
 
         public override void UpdateState()
         {
-            var enemiesInRange = GunGuide.GetEnemiesInRange();
-            if (enemiesInRange.Count == 0)
+            if (!GunGuide.IsAnyEnemyShootable())
             {
                 StateManager.SwitchState<GunStateIdle>(1);
                 return;
             }
 
-            var targetAngle = GunGuide.GetClosestAngle(enemiesInRange);
+            var targetAngle = GunGuide.GetClosestAngle();
             if (Mathf.Abs(targetAngle - AimPivotTrans.localEulerAngles.y) < 1f)
                 GunManager.Fire();
             UpdateAimTowardsTarget(targetAngle);
