@@ -17,7 +17,7 @@ namespace TheyAreComing
         {
             muzzleParticle.Play();
             var projectile = LeanPool.Spawn(projectilePrefab, projectileSpawnTrans.position, Quaternion.identity);
-            projectile.Init(projectileSpawnTrans.transform.forward);
+            projectile.Init(projectileSpawnTrans.transform.right);
         }
     }
 }

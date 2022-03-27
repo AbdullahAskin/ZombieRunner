@@ -10,9 +10,9 @@ namespace TheyAreComing
     {
         public List<Gun> guns;
         public Transform aimTargetTrans;
-        public Gun currentGun;
         public float rotateSpeed;
         private bool _canFire = true;
+        private Gun _currentGun;
         private Player _player;
         private Tween _recoilTween;
         private Player Player => _player ? _player : _player = GetComponent<Player>();
@@ -26,9 +26,9 @@ namespace TheyAreComing
         {
             if (!_canFire) return;
             MMVibrationManager.Haptic(HapticTypes.LightImpact);
-            DOVirtual.DelayedCall(currentGun.fireOffset, () => _canFire = true).OnStart(() => _canFire = false)
+            DOVirtual.DelayedCall(_currentGun.fireOffset, () => _canFire = true).OnStart(() => _canFire = false)
                 .SetUpdate(UpdateType.Fixed);
-            currentGun.Fire();
+            _currentGun.Fire();
             Recoil();
         }
 
@@ -36,20 +36,19 @@ namespace TheyAreComing
         {
             _recoilTween?.Kill(true);
             _recoilTween = DOTween.Sequence()
-                .Append(aimTargetTrans.DOLocalMoveY(-currentGun.recoilAmount, currentGun.recoilDuration - .02f)
+                .Append(aimTargetTrans.DOLocalMoveY(-_currentGun.recoilAmount, _currentGun.recoilDuration / 2 - .02f)
                     .SetRelative()
                     .SetEase(Ease.OutSine))
-                .Append(aimTargetTrans.DOLocalMoveY(0, currentGun.recoilDuration + .02f).SetEase(Ease.InSine));
+                .Append(aimTargetTrans.DOLocalMoveY(0, _currentGun.recoilDuration / 2 + .02f).SetEase(Ease.InSine));
         }
 
         public void SwitchGun(int index)
         {
-            if (index == currentGun.transform.GetSiblingIndex()) return;
-
-            currentGun.gameObject.SetActive(false);
-            currentGun = guns[index];
-            currentGun.gameObject.SetActive(true);
-            Player.aimIK.solver.transform = currentGun.aimTrans;
+            if (_currentGun && index == _currentGun.transform.GetSiblingIndex()) return;
+            if (_currentGun) _currentGun.gameObject.SetActive(false);
+            _currentGun = guns[index];
+            _currentGun.gameObject.SetActive(true);
+            Player.aimIK.solver.transform = _currentGun.aimTrans;
         }
     }
 }
