@@ -30,13 +30,6 @@ namespace TheyAreComing
             triggerable.TriggerEnter(this);
         }
 
-        private void OnTriggerExit(Collider other)
-        {
-            if (!StateManager.IsAlive) return;
-            if (!other.TryGetComponent(out ITriggerable<PlayerCollisionManager> triggerable)) return;
-            triggerable.TriggerExit(this);
-        }
-
         protected override void Death()
         {
             StateManager.SwitchState<PlayerStateDeath>(0);

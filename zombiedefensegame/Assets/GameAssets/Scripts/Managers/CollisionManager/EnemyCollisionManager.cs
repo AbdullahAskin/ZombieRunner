@@ -13,18 +13,12 @@ namespace TheyAreComing
 
         protected override int MAXHealth => EnemyBase.EnemyCharacterSettings.MaxHealth;
 
+
         private void OnTriggerEnter(Collider other)
         {
             if (!StateManager.IsAlive) return;
-            if (!other.TryGetComponent(out ITriggerable<EnemyCollisionManager> triggerable)) return;
+            if (!other.transform.TryGetComponent(out ITriggerable<EnemyCollisionManager> triggerable)) return;
             triggerable.TriggerEnter(this);
-        }
-
-        private void OnTriggerExit(Collider other)
-        {
-            if (!StateManager.IsAlive) return;
-            if (!other.TryGetComponent(out ITriggerable<EnemyCollisionManager> triggerable)) return;
-            triggerable.TriggerExit(this);
         }
 
         public void CreateParticles(IEnumerable<ParticleSystem> explosionParticles)
