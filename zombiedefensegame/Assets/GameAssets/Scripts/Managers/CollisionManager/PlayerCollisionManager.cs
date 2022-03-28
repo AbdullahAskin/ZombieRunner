@@ -38,6 +38,7 @@ namespace TheyAreComing
 
         public void Damage(int amount)
         {
+            damageParticle.Play();
             CalculateHealth(amount);
             MMVibrationManager.Haptic(HapticTypes.MediumImpact);
             CameraService.ShakeCam();

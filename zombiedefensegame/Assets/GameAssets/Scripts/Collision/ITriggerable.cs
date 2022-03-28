@@ -1,7 +1,10 @@
+using UnityEngine;
+
 namespace TheyAreComing
 {
-    public interface ITriggerable<T> where T : CollisionManagerBase
+    public interface ITriggerable<Base> where Base : CollisionManagerBase
     {
-        public void TriggerEnter(T t);
+        public void TriggerEnter(Base t);
+        public void CollisionEnter(Base collisionManager, ContactPoint contactPoint);
     }
 }
