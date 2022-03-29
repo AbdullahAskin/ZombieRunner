@@ -28,7 +28,7 @@ namespace TheyAreComing
             _currentHealth = MAXHealth;
         }
 
-        protected void CalculateHealth(int amount)
+        protected void OnHealthChange(int amount)
         {
             CurrentHealth -= amount;
             CreateFeedback(amount);

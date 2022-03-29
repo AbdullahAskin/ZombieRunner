@@ -10,7 +10,7 @@ namespace TheyAreComing
         [SerializeField] private float force;
         [SerializeField] private float collideOffset = 0.15f;
         [SerializeField] private Vector2 damageLimit;
-        [SerializeField] private ParticleSystem impactParticlePrefab;
+        [SerializeField] private GameObject impactParticlePrefab;
         private Tween _lifeTimeTween;
 
         private void OnEnable()
@@ -31,9 +31,10 @@ namespace TheyAreComing
         {
             collisionManager.Damage((int) Random.Range(damageLimit.x, damageLimit.y));
             transform.position = contactPoint.point - contactPoint.normal * collideOffset;
-            Instantiate(impactParticlePrefab, transform.position,
+            var impactParticle = Instantiate(impactParticlePrefab, transform.position,
                 Quaternion.FromToRotation(Vector3.up, contactPoint.normal));
-            LeanPool.Despawn(gameObject);
+            Destroy(impactParticle, 2f);
+            LeanPool.Despawn(gameObject);   
         }
 
         public void Init(Vector3 startDir)

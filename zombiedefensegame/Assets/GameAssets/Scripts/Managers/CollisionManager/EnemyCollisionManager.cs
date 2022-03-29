@@ -35,7 +35,7 @@ namespace TheyAreComing
 
         public void Damage(int amount)
         {
-            CalculateHealth(amount);
+            OnHealthChange(amount);
             if (CurrentHealth == 0) Death();
         }
     }

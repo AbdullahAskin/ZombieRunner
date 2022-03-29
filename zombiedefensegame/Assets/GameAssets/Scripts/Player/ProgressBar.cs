@@ -8,7 +8,6 @@ namespace TheyAreComing
     public class ProgressBar : MonoBehaviour
     {
         [SerializeField] private Slider healthSlider;
-        [SerializeField] private Transform sliderParent;
         private int _maxHealth;
         private Player _player;
         private Tween _sliderMovementTween;
@@ -27,9 +26,6 @@ namespace TheyAreComing
 
         private void OnHealthChange(int currentHealth)
         {
-            DOTween.Sequence()
-                .Append(sliderParent.DOScale(1f, .1f))
-                .Append(healthSlider.DOValue(currentHealth, .25f));
             _sliderMovementTween?.Kill();
             _sliderMovementTween = healthSlider.DOValue(currentHealth, .25f);
         }
