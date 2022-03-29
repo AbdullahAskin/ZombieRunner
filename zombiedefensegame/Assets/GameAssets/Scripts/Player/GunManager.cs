@@ -19,7 +19,7 @@ namespace TheyAreComing
 
         private void Awake()
         {
-            SwitchGun(2);
+            SwitchGun(0);
         }
 
         public void Fire()
