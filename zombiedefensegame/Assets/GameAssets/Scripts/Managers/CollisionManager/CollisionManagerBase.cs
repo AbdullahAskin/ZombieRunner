@@ -8,6 +8,7 @@ namespace TheyAreComing
     {
         [SerializeField] private float ySpawnPos;
         [SerializeField] private DamageNumber damageNumber;
+        [SerializeField] private DamageNumber healNumber;
         private int _currentHealth;
         private StateManager _stateManager;
 
@@ -30,16 +31,18 @@ namespace TheyAreComing
 
         protected void OnHealthChange(int amount)
         {
-            CurrentHealth -= amount;
+            CurrentHealth += amount;
             CreateFeedback(amount);
         }
 
         private void CreateFeedback(int amount)
         {
+            var absAmount = Mathf.Abs(amount);
             var additional = new Vector2(0, ySpawnPos);
-            damageNumber.Spawn(transform.position + (Vector3) additional, amount, transform);
+            if (amount > 0) healNumber.Spawn(transform.position + (Vector3) additional * 2,absAmount);
+            else damageNumber.Spawn(transform.position + (Vector3) additional, absAmount, transform);
         }
 
-        protected abstract void Death();
+        protected abstract void OnDeath();
     }
 }

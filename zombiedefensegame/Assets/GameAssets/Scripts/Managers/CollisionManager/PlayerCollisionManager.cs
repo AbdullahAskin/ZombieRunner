@@ -10,10 +10,12 @@ namespace TheyAreComing
         [SerializeField] private ParticleSystem damageParticle;
         private PlayerAnimationController _animationController;
         private CameraService _cameraService;
+        private GunManager _gunManager;
         private Player _player;
         private ProgressBar _progressBar;
 
         private Player Player => _player ? _player : _player = GetComponent<Player>();
+        public GunManager GunManager => _gunManager ? _gunManager : _gunManager = GetComponent<GunManager>();
         private ProgressBar ProgressBar => _progressBar ? _progressBar : _progressBar = GetComponent<ProgressBar>();
 
         private PlayerAnimationController AnimationController => _animationController
@@ -33,16 +35,16 @@ namespace TheyAreComing
             triggerable.TriggerEnter(this);
         }
 
-        protected override void Death()
+        protected override void OnDeath()
         {
             StateManager.SwitchState<PlayerStateDeath>(0);
-            Player.Death();
+            Player.OnDeath();
         }
 
         public void OnDamage(int amount)
         {
             //Updating health
-            OnHealthChange(amount);
+            OnHealthChange(-amount);
             ProgressBar.ONHealthChange(CurrentHealth);
 
             //Feedbacks
@@ -51,8 +53,14 @@ namespace TheyAreComing
             CameraService.ShakeCam();
 
             //Is death control
-            if (CurrentHealth == 0) Death();
+            if (CurrentHealth == 0) OnDeath();
             else AnimationController.SetTrigger(PlayerAnimationController.Hit);
+        }
+
+        public void OnHeal(int amount)
+        {
+            OnHealthChange(amount);
+            ProgressBar.ONHealthChange(CurrentHealth);
         }
     }
 }

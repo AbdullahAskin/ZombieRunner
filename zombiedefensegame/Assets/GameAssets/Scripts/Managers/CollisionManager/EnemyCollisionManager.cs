@@ -26,7 +26,7 @@ namespace TheyAreComing
                 damageParticles.Add(Instantiate(explosionParticle, explosionParticlePivot, false));
         }
 
-        protected override void Death()
+        protected override void OnDeath()
         {
             MMVibrationManager.Haptic(HapticTypes.SoftImpact);
             StateManager.SwitchState<EnemyStateDeath>(0);
@@ -35,8 +35,8 @@ namespace TheyAreComing
 
         public void Damage(int amount)
         {
-            OnHealthChange(amount);
-            if (CurrentHealth == 0) Death();
+            OnHealthChange(-amount);
+            if (CurrentHealth == 0) OnDeath();
         }
     }
 }
