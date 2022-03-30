@@ -8,8 +8,8 @@ namespace TheyAreComing
     [RequireComponent(typeof(GunGuide))]
     public class GunManager : MonoBehaviour
     {
-        public List<Gun> guns;
-        public Transform aimTargetTrans;
+        [SerializeField] private List<Gun> guns;
+        [SerializeField] private Transform aimTargetTrans;
         public float rotateSpeed;
         private bool _canFire = true;
         private Gun _currentGun;
@@ -19,7 +19,7 @@ namespace TheyAreComing
 
         private void Awake()
         {
-            SwitchGun(2);
+            SwitchGun(0);
         }
 
         public void Fire()
@@ -42,13 +42,21 @@ namespace TheyAreComing
                 .Append(aimTargetTrans.DOLocalMoveY(0, _currentGun.recoilDuration / 2 + .02f).SetEase(Ease.InSine));
         }
 
-        public void SwitchGun(int index)
+        private void SwitchGun(int index)
         {
             if (_currentGun && index == _currentGun.transform.GetSiblingIndex()) return;
             if (_currentGun) _currentGun.gameObject.SetActive(false);
             _currentGun = guns[index];
             _currentGun.gameObject.SetActive(true);
             Player.aimIK.solver.transform = _currentGun.aimTrans;
+        }
+
+        public void SwitchGunToRandomOne()
+        {
+            var iCurrentGun = _currentGun.transform.GetSiblingIndex();
+            var iTargetGun = Random.Range(0, guns.Count - 1);
+            if (iTargetGun >= iCurrentGun) iTargetGun += 1;
+            SwitchGun(iTargetGun);
         }
     }
 }

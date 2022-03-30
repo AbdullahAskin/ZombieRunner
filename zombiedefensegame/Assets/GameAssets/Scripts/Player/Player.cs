@@ -16,6 +16,7 @@ namespace TheyAreComing
         private GameService _gameService;
         private PlayerCollisionManager _playerCollisionManager;
         private PlayerStateManager _playerStateManager;
+        private ProgressBar _progressBar;
         public bool IsAlive { get; set; } = true;
 
         public PlayerCharacterSettings PlayerCharacterSettings =>
@@ -24,6 +25,10 @@ namespace TheyAreComing
         public PlayerCollisionManager PlayerCollisionManager => _playerCollisionManager
             ? _playerCollisionManager
             : _playerCollisionManager = GetComponent<PlayerCollisionManager>();
+
+        public ProgressBar ProgressBar => _progressBar
+            ? _progressBar
+            : _progressBar = GetComponent<ProgressBar>();
 
         public GameService GameService => _gameService
             ? _gameService
@@ -35,6 +40,7 @@ namespace TheyAreComing
 
         public void ToggleState(bool bind)
         {
+            ProgressBar.ToggleProgressBar(bind);
             if (bind)
             {
                 StateManager.SwitchState<PlayerStateMovement>(0);
@@ -47,7 +53,7 @@ namespace TheyAreComing
             }
         }
 
-        public void Death()
+        public void OnDeath()
         {
             IsAlive = false;
             MMVibrationManager.Haptic(HapticTypes.Failure);
