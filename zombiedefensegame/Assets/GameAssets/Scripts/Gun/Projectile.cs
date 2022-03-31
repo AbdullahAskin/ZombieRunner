@@ -34,7 +34,7 @@ namespace TheyAreComing
             var impactParticle = Instantiate(impactParticlePrefab, transform.position,
                 Quaternion.FromToRotation(Vector3.up, contactPoint.normal));
             Destroy(impactParticle, 2f);
-            LeanPool.Despawn(gameObject);   
+            LeanPool.Despawn(gameObject);
         }
 
         public void Init(Vector3 startDir)
