@@ -13,7 +13,7 @@ namespace TheyAreComing
         {
             var deathType = Random.Range(0, 3);
             animator.SetFloat(DeathType, deathType);
-            animator.SetTrigger(Death);
+            animator.SetBool(Death, true);
         }
 
         public void TriggerAttack(bool mirror)

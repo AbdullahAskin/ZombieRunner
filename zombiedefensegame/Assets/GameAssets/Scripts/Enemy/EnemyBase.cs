@@ -6,7 +6,10 @@ namespace TheyAreComing
     {
         public Transform skinTrans;
         [SerializeField] private CharacterSettingsScriptableObject characterSettingsScriptable;
+        private Collider _collider;
         private EnemyStateManager _enemyStateManager;
+
+        private Collider Collider => _collider ? _collider : _collider = GetComponent<Collider>();
         public EnemyCharacterSettings EnemyCharacterSettings => characterSettingsScriptable.EnemyCharacterSettings;
 
         public EnemyStateManager StateManager =>
@@ -27,6 +30,7 @@ namespace TheyAreComing
         public void Death()
         {
             EnemyManager.Remove(this);
+            Collider.enabled = false;
         }
     }
 }
