@@ -12,7 +12,7 @@ namespace TheyAreComing
         public override void EnterState()
         {
             StateManager.PlayerAnimationController.ToggleWalk(false);
-            StateManager.PlayerSplineManager.SetSpeed(0f, 1f);
+            StateManager.PlayerMovement.SetSpeed(0f, 1f);
         }
 
         public override void ExitState()

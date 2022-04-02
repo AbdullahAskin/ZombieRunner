@@ -3,14 +3,14 @@ namespace TheyAreComing
     public abstract class PlayerStateBase : IStateBase
     {
         protected PlayerAnimationController AnimationController;
-        protected PlayerSplineManager SplineManager;
+        protected PlayerMovement Movement;
         protected PlayerStateManager StateManager;
 
         protected PlayerStateBase(PlayerStateManager stateManager)
         {
             StateManager = stateManager;
             AnimationController = stateManager.PlayerAnimationController;
-            SplineManager = stateManager.PlayerSplineManager;
+            Movement = stateManager.PlayerMovement;
         }
 
         protected PlayerCharacterSettings CharacterSettings => StateManager.Player.PlayerCharacterSettings;

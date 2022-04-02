@@ -4,14 +4,14 @@ using UnityEngine;
 namespace TheyAreComing
 {
     [RequireComponent(typeof(GunGuide))]
-    [RequireComponent(typeof(PlayerAnimationController), typeof(PlayerSplineManager))]
+    [RequireComponent(typeof(PlayerAnimationController), typeof(PlayerMovement))]
     public class PlayerStateManager : StateManager
     {
         private GunGuide _gunGuide;
         private GunManager _gunManager;
         private Player _player;
         private PlayerAnimationController _playerAnimationController;
-        private PlayerSplineManager _playerSplineManager;
+        private PlayerMovement _playerMovement;
 
         public PlayerAnimationController PlayerAnimationController => _playerAnimationController
             ? _playerAnimationController
@@ -21,9 +21,9 @@ namespace TheyAreComing
             ? _player
             : _player = GetComponent<Player>();
 
-        public PlayerSplineManager PlayerSplineManager => _playerSplineManager
-            ? _playerSplineManager
-            : _playerSplineManager = GetComponent<PlayerSplineManager>();
+        public PlayerMovement PlayerMovement => _playerMovement
+            ? _playerMovement
+            : _playerMovement = GetComponent<PlayerMovement>();
 
         public GunManager GunManager => _gunManager
             ? _gunManager

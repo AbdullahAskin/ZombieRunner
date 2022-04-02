@@ -8,7 +8,7 @@ namespace TheyAreComing
 
         public override void EnterState()
         {
-            SplineManager.SetSpeed(0f, 0f);
+            Movement.SetSpeed(0f, 0f);
             AnimationController.OnDeath();
         }
 

@@ -12,7 +12,7 @@ namespace ExampleNamespace
         public override void EnterState()
         {
             AnimationController.ToggleWalk(false);
-            SplineManager.SetSpeed(0f, .2f);
+            Movement.SetSpeed(0f, .2f);
         }
 
         public override void ExitState()

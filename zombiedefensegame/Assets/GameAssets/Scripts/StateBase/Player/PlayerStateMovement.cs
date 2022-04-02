@@ -11,7 +11,7 @@ namespace TheyAreComing
 
         public PlayerStateMovement(PlayerStateManager stateManager) : base(stateManager)
         {
-            _horizontalLimit = SplineManager.horizontalLimit;
+            _horizontalLimit = Movement.horizontalLimit;
         }
 
         public void ToggleInput(bool bind)
@@ -24,8 +24,8 @@ namespace TheyAreComing
         {
             ToggleInput(true);
             AnimationController.ToggleWalk(true);
-            SplineManager.SetSpeed(CharacterSettings.Speed, 1f);
-            _horizontalMovementX = StateManager.PlayerSplineManager.SplineMotion.x;
+            Movement.SetSpeed(CharacterSettings.Speed, 1f);
+            _horizontalMovementX = StateManager.PlayerMovement.HorizontalMovementX;
         }
 
         public override void ExitState()
@@ -35,14 +35,14 @@ namespace TheyAreComing
 
         public override void UpdateState()
         {
-            var targetMotionX = Mathf.Lerp(SplineManager.SplineMotion.x, _horizontalMovementX, .25f);
-            SplineManager.SplineMotion = new Vector2(targetMotionX, 0);
+            var targetMotionX = Mathf.Lerp(Movement.HorizontalMovementX, _horizontalMovementX, .25f);
+            Movement.HorizontalMovementX = targetMotionX;
         }
 
         private void HorizontalMovement(LeanFinger leanFinger)
         {
-            if (Math.Abs(leanFinger.ScreenDelta.x) < SplineManager.horizontalDeadZone) return;
-            var increaseAmount = leanFinger.ScreenDelta.x / Screen.width * SplineManager.horizontalSpeed;
+            if (Math.Abs(leanFinger.ScreenDelta.x) < Movement.horizontalDeadZone) return;
+            var increaseAmount = leanFinger.ScreenDelta.x / Screen.width * Movement.horizontalSpeed;
             _horizontalMovementX =
                 Mathf.Clamp(_horizontalMovementX + increaseAmount, _horizontalLimit.x, _horizontalLimit.y);
         }

@@ -20,12 +20,6 @@ namespace TheyAreComing
             triggerable.CollisionEnter(this, other.contacts[0]);
         }
 
-        public void CreateParticles(IEnumerable<ParticleSystem> explosionParticles)
-        {
-            foreach (var explosionParticle in explosionParticles)
-                damageParticles.Add(Instantiate(explosionParticle, explosionParticlePivot, false));
-        }
-
         protected override void OnDeath()
         {
             MMVibrationManager.Haptic(HapticTypes.SoftImpact);

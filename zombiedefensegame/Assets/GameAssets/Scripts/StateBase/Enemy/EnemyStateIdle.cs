@@ -11,6 +11,7 @@ namespace TheyAreComing
         public override void EnterState()
         {
             EnemyAnimationController.ToggleWalk(false);
+            EnemyTrans.rotation = Quaternion.LookRotation(PlayerTrans.position - EnemyTrans.position, Vector3.up);
         }
 
         public override void ExitState()
@@ -23,6 +24,5 @@ namespace TheyAreComing
             if (dis > CharacterSettings.range) return;
             StateManager.SwitchState<EnemyStateMovement>(0);
         }
-
     }
 }
