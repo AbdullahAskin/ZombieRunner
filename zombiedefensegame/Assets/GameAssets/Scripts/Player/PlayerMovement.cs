@@ -5,10 +5,10 @@ namespace TheyAreComing
 {
     public class PlayerMovement : MonoBehaviour
     {
+        public Transform movementPivot;
         public float horizontalSpeed;
         public float horizontalDeadZone;
         public Vector2 horizontalLimit;
-        [SerializeField] private Transform movementPivot;
         private float _currentSpeed;
 
         public float HorizontalMovementX

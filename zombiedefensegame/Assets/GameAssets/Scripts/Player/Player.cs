@@ -15,12 +15,19 @@ namespace TheyAreComing
         [SerializeField] private FullBodyBipedIK fullBodyBipedIK;
         private GameService _gameService;
         private PlayerCollisionManager _playerCollisionManager;
+        private PlayerMovement _playerMovement;
         private PlayerStateManager _playerStateManager;
         private ProgressBar _progressBar;
         public bool IsAlive { get; set; } = true;
 
+        public Vector3 Position => PlayerMovement.movementPivot.position;
+
         public PlayerCharacterSettings PlayerCharacterSettings =>
             characterSettingsScriptableObject.PlayerCharacterSettings;
+
+        public PlayerMovement PlayerMovement => _playerMovement
+            ? _playerMovement
+            : _playerMovement = GetComponent<PlayerMovement>();
 
         public PlayerCollisionManager PlayerCollisionManager => _playerCollisionManager
             ? _playerCollisionManager
