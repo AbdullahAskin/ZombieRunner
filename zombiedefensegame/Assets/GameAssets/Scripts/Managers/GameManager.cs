@@ -1,3 +1,4 @@
+using AmazingAssets.CurvedWorld;
 using Service;
 using UnityEngine;
 
@@ -6,11 +7,16 @@ namespace TheyAreComing
     public class GameManager : MonoBehaviour, IGameStateObserver
     {
         private static Player _player;
+        private static CurvedWorldController _curvedWorldController;
         private GameService _gameService;
 
         public static Player Player => _player
             ? _player
             : _player = FindObjectOfType<Player>();
+
+        public static CurvedWorldController CurvedWorldController => _curvedWorldController
+            ? _curvedWorldController
+            : _curvedWorldController = FindObjectOfType<CurvedWorldController>();
 
         private GameService GameService =>
             _gameService ? _gameService : _gameService = ServiceManager.GetService<GameService>();

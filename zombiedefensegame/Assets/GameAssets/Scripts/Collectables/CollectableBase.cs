@@ -11,12 +11,13 @@ namespace TheyAreComing
         public virtual void TriggerEnter(PlayerCollisionManager collisionManager)
         {
             skin.SetActive(false);
+            onCollectParticle.transform.position =
+                GameManager.CurvedWorldController.TransformPosition(transform.position);
             onCollectParticle.Play();
         }
 
         public void CollisionEnter(PlayerCollisionManager collisionManager, ContactPoint contactPoint)
         {
-            
         }
     }
 }

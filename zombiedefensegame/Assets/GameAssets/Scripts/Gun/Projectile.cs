@@ -31,9 +31,12 @@ namespace TheyAreComing
         {
             collisionManager.Damage((int) Random.Range(damageLimit.x, damageLimit.y));
             transform.position = contactPoint.point - contactPoint.normal * collideOffset;
-            var impactParticle = Instantiate(impactParticlePrefab, transform.position,
-                Quaternion.FromToRotation(Vector3.up, contactPoint.normal));
-            Destroy(impactParticle, 2f);
+
+            var spawnPosition = GameManager.CurvedWorldController.TransformPosition(transform.position);
+            var spawnRotation = Quaternion.FromToRotation(Vector3.up, contactPoint.normal);
+            var impactParticle = Instantiate(impactParticlePrefab, spawnPosition, spawnRotation);
+
+            Destroy(impactParticle, 2f);    
             LeanPool.Despawn(gameObject);
         }
 

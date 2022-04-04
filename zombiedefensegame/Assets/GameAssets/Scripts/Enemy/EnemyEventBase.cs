@@ -12,7 +12,7 @@ namespace TheyAreComing
         {
             var damage = EnemyBase.EnemyCharacterSettings.damage;
             var player = GameManager.Player;
-            var dis = Vector3.Distance(EnemyBase.transform.position, player.transform.position);
+            var dis = Vector3.Distance(EnemyBase.transform.position, player.Position);
             if (dis < attackEffectDistance && EnemyBase.IsAlive) player.PlayerCollisionManager.OnDamage(damage);
         }
     }

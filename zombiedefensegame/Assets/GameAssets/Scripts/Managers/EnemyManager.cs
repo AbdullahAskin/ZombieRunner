@@ -50,7 +50,7 @@ namespace TheyAreComing
         {
             TargetEnemyBases.RemoveAll(x =>
                 x.transform.position.z - 3f <
-                GameManager.Player.transform.position.z);
+                GameManager.Player.Position.z);
         }
 
         public static void ToggleEnemies(bool bind)
