@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using DG.Tweening;
 using MoreMountains.NiceVibrations;
+using TheyAre;
 using UnityEngine;
 
 namespace TheyAreComing
@@ -54,8 +55,7 @@ namespace TheyAreComing
         public void SwitchGunToRandomOne()
         {
             var iCurrentGun = _currentGun.transform.GetSiblingIndex();
-            var iTargetGun = Random.Range(0, guns.Count - 1);
-            if (iTargetGun >= iCurrentGun) iTargetGun += 1;
+            var iTargetGun = SharedFunctions.GetRandomExcept(guns.Count, iCurrentGun);
             SwitchGun(iTargetGun);
         }
     }
