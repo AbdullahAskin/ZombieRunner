@@ -6,12 +6,14 @@ namespace TheyAreComing
 {
     public class PlayerStateMovement : PlayerStateBase
     {
-        private readonly Vector2 _horizontalLimit;
-        private float _horizontalMovementX;
+        private readonly float _movementRange;
+        private readonly float _touchDeadZone;
+        private float _currentHorizontalX;
 
         public PlayerStateMovement(PlayerStateManager stateManager) : base(stateManager)
         {
-            _horizontalLimit = Movement.horizontalLimit;
+            _touchDeadZone = stateManager.Player.PlayerCharacterSettings.touchDeadZone;
+            _movementRange = stateManager.Player.PlayerCharacterSettings.movementRange;
         }
 
         public void ToggleInput(bool bind)
@@ -25,7 +27,7 @@ namespace TheyAreComing
             ToggleInput(true);
             AnimationController.ToggleWalk(true);
             Movement.SetSpeed(CharacterSettings.Speed, 1f);
-            _horizontalMovementX = StateManager.PlayerMovement.HorizontalMovementX;
+            _currentHorizontalX = StateManager.PlayerMovement.HorizontalMovementX;
         }
 
         public override void ExitState()
@@ -35,16 +37,16 @@ namespace TheyAreComing
 
         public override void UpdateState()
         {
-            var targetMotionX = Mathf.Lerp(Movement.HorizontalMovementX, _horizontalMovementX, .25f);
+            var targetMotionX = Mathf.Lerp(Movement.HorizontalMovementX, _currentHorizontalX, .25f);
             Movement.HorizontalMovementX = targetMotionX;
         }
 
         private void HorizontalMovement(LeanFinger leanFinger)
         {
-            if (Math.Abs(leanFinger.ScreenDelta.x) < Movement.horizontalDeadZone) return;
-            var increaseAmount = leanFinger.ScreenDelta.x / Screen.width * Movement.horizontalSpeed;
-            _horizontalMovementX =
-                Mathf.Clamp(_horizontalMovementX + increaseAmount, _horizontalLimit.x, _horizontalLimit.y);
+            if (Math.Abs(leanFinger.ScreenDelta.x) < _touchDeadZone) return;
+            var increaseAmount = leanFinger.ScreenDelta.x / Screen.width * Movement.HorizontalTouchSpeed;
+            _currentHorizontalX =
+                Mathf.Clamp(_currentHorizontalX + increaseAmount, -_movementRange, _movementRange);
         }
     }
 }

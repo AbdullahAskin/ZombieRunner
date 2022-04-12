@@ -25,7 +25,7 @@ namespace TheyAreComing
 
         public override void UpdateState()
         {
-            var distance = Vector3.Distance(PlayerTrans.position, EnemyTrans.position);
+            var distance = Vector3.Distance(Player.Position, EnemyTrans.position);
             if (CharacterSettings.attackRange > distance)
             {
                 StateManager.SwitchState<EnemyStateAttack>(0);

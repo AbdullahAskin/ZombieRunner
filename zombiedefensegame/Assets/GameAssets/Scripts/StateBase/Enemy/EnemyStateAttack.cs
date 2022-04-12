@@ -12,7 +12,7 @@ namespace TheyAreComing
 
         public override void EnterState()
         {
-            var isMirroredAttack = PlayerTrans.position.x > EnemyTrans.position.x;
+            var isMirroredAttack = Player.Position.x > EnemyTrans.position.x;
             EnemyAnimationController.TriggerAttack(isMirroredAttack);
             _movementTween = DOTween.Sequence()
                 .Append(SetRelativeSpeed(CharacterSettings.Speed + 3f, .5f))

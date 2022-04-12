@@ -8,7 +8,7 @@ namespace TheyAreComing
         private readonly Transform _enemySkinTrans;
         protected readonly EnemyAnimationController EnemyAnimationController;
         protected readonly Transform EnemyTrans;
-        protected readonly Transform PlayerTrans;
+        protected readonly Player Player;
         protected readonly EnemyStateManager StateManager;
 
         private float _currentSpeed;
@@ -16,7 +16,7 @@ namespace TheyAreComing
         protected EnemyStateBase(EnemyStateManager stateManager)
         {
             StateManager = stateManager;
-            PlayerTrans = GameManager.Player.transform;
+            Player = GameManager.Player;
             EnemyTrans = stateManager.EnemyBase.transform;
             _enemySkinTrans = stateManager.EnemyBase.skinTrans;
             EnemyAnimationController = stateManager.EnemyAnimationController;
@@ -31,14 +31,14 @@ namespace TheyAreComing
 
         protected void Rotate()
         {
-            var targetRotation = Quaternion.LookRotation(PlayerTrans.position - EnemyTrans.position, Vector3.up);
+            var targetRotation = Quaternion.LookRotation(Player.Position - EnemyTrans.position, Vector3.up);
             _enemySkinTrans.rotation = Quaternion.Slerp(_enemySkinTrans.rotation, targetRotation, .3f);
         }
 
         protected void Move()
         {
             var step = _currentSpeed * Time.fixedDeltaTime;
-            EnemyTrans.position = Vector3.MoveTowards(EnemyTrans.position, PlayerTrans.position, step);
+            EnemyTrans.position = Vector3.MoveTowards(EnemyTrans.position, Player.Position, step);
         }
 
         protected Tween SetSpeed(float from, float to, float duration)
