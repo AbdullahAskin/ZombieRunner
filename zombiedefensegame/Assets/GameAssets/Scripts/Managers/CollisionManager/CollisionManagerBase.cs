@@ -12,7 +12,6 @@ namespace TheyAreComing
         private int _currentHealth;
         private StateManager _stateManager;
 
-
         protected StateManager StateManager =>
             _stateManager ? _stateManager : _stateManager = GetComponent<StateManager>();
 
@@ -23,6 +22,7 @@ namespace TheyAreComing
         }
 
         protected abstract int MAXHealth { get; }
+        protected abstract Vector3 CharacterPos { get; }
 
         private void Awake()
         {
@@ -39,8 +39,8 @@ namespace TheyAreComing
         {
             var absAmount = Mathf.Abs(amount);
             var additional = new Vector2(0, ySpawnPos);
-            if (amount > 0) healNumber.Spawn(transform.position + (Vector3) additional * 2,absAmount);
-            else damageNumber.Spawn(transform.position + (Vector3) additional, absAmount, transform);
+            if (amount > 0) healNumber.Spawn(CharacterPos + (Vector3) additional * 2, absAmount);
+            else damageNumber.Spawn(CharacterPos + (Vector3) additional, absAmount);
         }
 
         protected abstract void OnDeath();

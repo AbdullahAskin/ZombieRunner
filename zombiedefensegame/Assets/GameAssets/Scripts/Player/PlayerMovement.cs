@@ -6,16 +6,18 @@ namespace TheyAreComing
     public class PlayerMovement : MonoBehaviour
     {
         public Transform movementPivot;
-        public float horizontalSpeed;
-        public float horizontalDeadZone;
-        public Vector2 horizontalLimit;
         private float _currentSpeed;
+        private Player _player;
+        private float MovementRange => Player.PlayerCharacterSettings.movementRange;
+        public float HorizontalTouchSpeed => Player.PlayerCharacterSettings.horizontalTouchSpeed;
+
+        private Player Player => _player ? _player : _player = GetComponent<Player>();
 
         public float HorizontalMovementX
         {
             get => movementPivot.localPosition.x;
             set => movementPivot.localPosition =
-                new Vector3(Mathf.Clamp(value, horizontalLimit.x, horizontalLimit.y), 0, 0);
+                new Vector3(Mathf.Clamp(value, -MovementRange, MovementRange), 0, 0);
         }
 
         private void FixedUpdate()

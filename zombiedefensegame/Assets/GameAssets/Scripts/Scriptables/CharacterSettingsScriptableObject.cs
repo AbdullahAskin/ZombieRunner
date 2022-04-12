@@ -27,11 +27,15 @@ namespace TheyAreComing
     [Serializable]
     public class PlayerCharacterSettings : CharacterSettings
     {
+        public float horizontalTouchSpeed;
+        public float movementRange;
+        public float touchDeadZone;
     }
 
     public class CharacterSettings
     {
         public int MaxHealth;
         public float Speed;
+        
     }
 }

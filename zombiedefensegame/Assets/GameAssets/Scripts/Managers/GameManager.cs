@@ -41,6 +41,8 @@ namespace TheyAreComing
                     ToggleCharacters(true);
                     break;
                 case GameState.Fail:
+                    ToggleCharacters(false);
+                    ServiceManager.GetService<MenuService>().GetMenu<FailMenu>().Appear();
                     break;
                 case GameState.Won:
                     break;

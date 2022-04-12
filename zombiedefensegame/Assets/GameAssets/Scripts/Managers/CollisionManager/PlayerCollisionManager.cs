@@ -27,6 +27,7 @@ namespace TheyAreComing
             : _cameraService = ServiceManager.GetService<CameraService>();
 
         protected override int MAXHealth => Player.PlayerCharacterSettings.MaxHealth;
+        protected override Vector3 CharacterPos => Player.Position;
 
         private void OnTriggerEnter(Collider other)
         {

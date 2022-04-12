@@ -30,6 +30,7 @@ namespace TheyAreComing
         public static void Remove(EnemyBase enemyBase)
         {
             TargetEnemyBases.Remove(enemyBase);
+            AllEnemyBases.Remove(enemyBase);
         }
 
         private void ToggleSubscribes(bool bind)

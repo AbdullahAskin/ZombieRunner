@@ -19,16 +19,9 @@ namespace TheyAreComing
         {
             _maxHealth = Player.PlayerCharacterSettings.MaxHealth;
             ONHealthChange += OnHealthChange;
-            // ServiceManager.GetService<GameService>().
 
-            //Init slider visualization
             healthSlider.maxValue = _maxHealth;
             healthSlider.value = _maxHealth;
-        }
-
-        private void Init()
-        {
-            progressBarParent.DOScale(Vector3.one, .3f).SetEase(Ease.OutBack);
         }
 
         private void OnHealthChange(int currentHealth)

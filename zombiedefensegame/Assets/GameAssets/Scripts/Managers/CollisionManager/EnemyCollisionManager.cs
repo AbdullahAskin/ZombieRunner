@@ -12,6 +12,7 @@ namespace TheyAreComing
         private EnemyBase EnemyBase => _enemyBase ? _enemyBase : _enemyBase = GetComponent<EnemyBase>();
 
         protected override int MAXHealth => EnemyBase.EnemyCharacterSettings.MaxHealth;
+        protected override Vector3 CharacterPos => transform.position;
 
         private void OnCollisionEnter(Collision other)
         {
