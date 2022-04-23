@@ -12,12 +12,18 @@ namespace TheyAreComing
 
         private void OnEnable()
         {
-            _updateSpawnablesTween = DOVirtual.DelayedCall(.5f, UpdateSpawnables).SetLoops(-1);
+            ToggleSpawn(true);
         }
 
-        private void OnDisable()
+        public void OnDisable()
         {
-            _updateSpawnablesTween?.Kill();
+            ToggleSpawn(false);
+        }
+
+        public void ToggleSpawn(bool bind)
+        {
+            if (bind) _updateSpawnablesTween = DOVirtual.DelayedCall(.5f, UpdateSpawnables).SetLoops(-1);
+            else _updateSpawnablesTween?.Kill();
         }
 
         private void UpdateSpawnables()

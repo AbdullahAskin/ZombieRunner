@@ -14,7 +14,7 @@ namespace TheyAreComing
         [SerializeField] protected float destroyDistance;
         [SerializeField] private float startDeadZoneDistance;
 
-        protected readonly List<Transform> CurrentSpawns = new List<Transform>();
+        protected static readonly List<Transform> CurrentSpawns = new List<Transform>();
         protected int iLastSpawnedPrefab;
         [NonSerialized] public Vector3 LastSpawnPos;
         [NonSerialized] public float TargetDistance;
@@ -47,6 +47,11 @@ namespace TheyAreComing
             if (!destroyedSpawn) return;
             CurrentSpawns.Remove(destroyedSpawn);
             Destroy(destroyedSpawn.gameObject);
+        }
+
+        public static void RemoveSpawn(Transform spawn)
+        {
+            CurrentSpawns.Remove(spawn);
         }
     }
 }
