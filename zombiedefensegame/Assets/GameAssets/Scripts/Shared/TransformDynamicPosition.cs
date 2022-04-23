@@ -1,5 +1,4 @@
-﻿using System;
-using TheyAreComing;
+﻿using TheyAreComing;
 using UnityEngine;
 
 namespace AmazingAssets.CurvedWorld.Example
@@ -11,19 +10,21 @@ namespace AmazingAssets.CurvedWorld.Example
 
         public Vector3 offset;
         public bool recalculateRotation;
+        private CurvedWorldController _curvedWorldController;
 
-        [NonSerialized] private CurvedWorldController _curvedWorldController;
 
         private void Start()
         {
-            if (!parent) parent = transform.parent;
             _curvedWorldController = GameManager.CurvedWorldController;
+            if (parent == null)
+                parent = transform.parent;
         }
 
         private void Update()
         {
             //Transform position
             transform.position = _curvedWorldController.TransformPosition(parent.position + offset);
+
 
             //Transform normal (calcualte rotation)
             if (recalculateRotation)

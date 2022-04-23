@@ -32,6 +32,7 @@ namespace TheyAreComing
 
         public override void ExitState()
         {
+            AnimationController.ToggleWalk(false);
             ToggleInput(false);
         }
 
