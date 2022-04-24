@@ -40,5 +40,12 @@ namespace TheyAreComing
             EnemyManager.Remove(this);
             Collider.enabled = false;
         }
+
+        public void Disappear()
+        {
+            SpawnerBase.RemoveSpawn(transform);
+            Death();
+            Destroy(gameObject);
+        }
     }
 }
