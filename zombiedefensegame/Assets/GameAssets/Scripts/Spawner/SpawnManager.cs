@@ -6,19 +6,9 @@ namespace TheyAreComing
 {
     public class SpawnManager : MonoBehaviour
     {
+        private static Tween _updateSpawnablesTween;
         [SerializeField] private List<SpawnerBase> spawnerBases;
-        private Tween _updateSpawnablesTween;
         private Vector3 PlayerPos => GameManager.Player.transform.position;
-
-        private void OnEnable()
-        {
-            ToggleSpawn(true);
-        }
-
-        public void OnDisable()
-        {
-            ToggleSpawn(false);
-        }
 
         public void ToggleSpawn(bool bind)
         {

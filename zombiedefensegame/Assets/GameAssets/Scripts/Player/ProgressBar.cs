@@ -27,7 +27,7 @@ namespace TheyAreComing
         private void OnHealthChange(int currentHealth)
         {
             _sliderMovementTween?.Kill();
-            _sliderMovementTween = healthSlider.DOValue(currentHealth, .25f);
+            _sliderMovementTween = healthSlider.DOValue(currentHealth, .25f);   
         }
 
         public void ToggleProgressBar(bool bind)

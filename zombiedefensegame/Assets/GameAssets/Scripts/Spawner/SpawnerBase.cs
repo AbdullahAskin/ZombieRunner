@@ -7,14 +7,13 @@ namespace TheyAreComing
 {
     public abstract class SpawnerBase : MonoBehaviour
     {
+        protected static List<Transform> CurrentSpawns = new List<Transform>();
         [SerializeField] protected List<Transform> spawnablePrefabs;
         [SerializeField] protected Vector2 spawnPerDistance;
         [SerializeField] protected Vector2 horizontalLimit;
         [SerializeField] protected Vector2 verticalSpawnPos;
         [SerializeField] protected float destroyDistance;
         [SerializeField] private float startDeadZoneDistance;
-
-        protected static readonly List<Transform> CurrentSpawns = new List<Transform>();
         protected int iLastSpawnedPrefab;
         [NonSerialized] public Vector3 LastSpawnPos;
         [NonSerialized] public float TargetDistance;
@@ -22,6 +21,7 @@ namespace TheyAreComing
 
         public void OnEnable()
         {
+            CurrentSpawns = new List<Transform>();
             LastSpawnPos = (PlayerPos.z + startDeadZoneDistance) * Vector3.forward;
         }
 

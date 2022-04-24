@@ -2,7 +2,6 @@ using DG.Tweening;
 using ExampleNamespace;
 using MoreMountains.NiceVibrations;
 using RootMotion.FinalIK;
-using Service;
 using UnityEngine;
 
 namespace TheyAreComing
@@ -13,7 +12,7 @@ namespace TheyAreComing
         public AimIK aimIK;
         [SerializeField] private CharacterSettingsScriptableObject characterSettingsScriptableObject;
         [SerializeField] private FullBodyBipedIK fullBodyBipedIK;
-        private GameService _gameService;
+        private PlayerAnimationController _playerAnimationController;
         private PlayerCollisionManager _playerCollisionManager;
         private PlayerMovement _playerMovement;
         private PlayerStateManager _playerStateManager;
@@ -29,6 +28,10 @@ namespace TheyAreComing
             ? _playerMovement
             : _playerMovement = GetComponent<PlayerMovement>();
 
+        public PlayerAnimationController PlayerAnimationController => _playerAnimationController
+            ? _playerAnimationController
+            : _playerAnimationController = GetComponent<PlayerAnimationController>();
+
         public PlayerCollisionManager PlayerCollisionManager => _playerCollisionManager
             ? _playerCollisionManager
             : _playerCollisionManager = GetComponent<PlayerCollisionManager>();
@@ -36,10 +39,6 @@ namespace TheyAreComing
         public ProgressBar ProgressBar => _progressBar
             ? _progressBar
             : _progressBar = GetComponent<ProgressBar>();
-
-        public GameService GameService => _gameService
-            ? _gameService
-            : _gameService = ServiceManager.GetService<GameService>();
 
         private PlayerStateManager StateManager => _playerStateManager
             ? _playerStateManager
@@ -64,13 +63,25 @@ namespace TheyAreComing
         {
             IsAlive = false;
             MMVibrationManager.Haptic(HapticTypes.Failure);
-            DOVirtual.Float(1, 0, .5f, x =>
+            SetAimIK(1, 0);
+        }
+
+        public void OnRevive()
+        {
+            IsAlive = true;
+            PlayerAnimationController.ResetAnimatorToWalk();
+            SetAimIK(0, 1);
+            MMVibrationManager.Haptic(HapticTypes.HeavyImpact);
+            PlayerCollisionManager.OnHeal(PlayerCharacterSettings.MaxHealth);
+        }
+
+        private void SetAimIK(float start, float end)
+        {
+            DOVirtual.Float(start, end, .5f, x =>
             {
                 aimIK.solver.IKPositionWeight = x;
                 fullBodyBipedIK.solver.IKPositionWeight = x;
             });
-            GameManager.ToggleCharacters(false);
-            DOVirtual.DelayedCall(1f, () => GameService.NotifyGameStateChange(GameState.Fail));
         }
     }
 }
