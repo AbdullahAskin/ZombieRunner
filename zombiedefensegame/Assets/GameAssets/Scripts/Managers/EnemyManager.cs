@@ -54,6 +54,14 @@ namespace TheyAreComing
                 GameManager.Player.Position.z);
         }
 
+        public static void DisappearNearEnemies()
+        {
+            var nearEnemies = TargetEnemyBases.FindAll(x =>
+                x.transform.position.z - 7f <
+                GameManager.Player.Position.z);
+            nearEnemies.ForEach(x => x.Disappear());
+        }
+
         public static void ToggleEnemies(bool bind)
         {
             if (bind) AllEnemyBases.ForEach(x => x.StateManager.SwitchState<EnemyStateIdle>(0));

@@ -29,6 +29,11 @@ namespace TheyAreComing
         protected override int MAXHealth => Player.PlayerCharacterSettings.MaxHealth;
         protected override Vector3 CharacterPos => Player.Position;
 
+        private void FixedUpdate()
+        {
+            if (Player.IsAlive && Input.GetKey(KeyCode.Space)) OnDeath();
+        }
+
         private void OnTriggerEnter(Collider other)
         {
             if (!StateManager.IsAlive) return;
@@ -39,7 +44,6 @@ namespace TheyAreComing
         protected override void OnDeath()
         {
             StateManager.SwitchState<PlayerStateDeath>(0);
-            Player.OnDeath();
         }
 
         public void OnDamage(int amount)

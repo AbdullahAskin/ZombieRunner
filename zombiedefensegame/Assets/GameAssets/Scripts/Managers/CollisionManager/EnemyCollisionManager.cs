@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using MoreMountains.NiceVibrations;
 using UnityEngine;
 
@@ -6,8 +5,6 @@ namespace TheyAreComing
 {
     public class EnemyCollisionManager : CollisionManagerBase
     {
-        public Transform explosionParticlePivot;
-        [HideInInspector] public List<ParticleSystem> damageParticles = new List<ParticleSystem>();
         private EnemyBase _enemyBase;
         private EnemyBase EnemyBase => _enemyBase ? _enemyBase : _enemyBase = GetComponent<EnemyBase>();
 
