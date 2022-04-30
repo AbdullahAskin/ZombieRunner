@@ -8,10 +8,13 @@ namespace TheyAreComing
     public class GameManager : MonoBehaviour, IGameStateObserver
     {
         private static Player _player;
+        private static PlayMenu _playMenu;
         private static CurvedWorldController _curvedWorldController;
         private static SpawnManager _spawnManager;
         private static GameService _gameService;
         private MenuService _menuService;
+
+        public static PlayMenu PlayMenu => ServiceManager.GetService<MenuService>().GetMenu<PlayMenu>();
 
         public static Player Player => _player
             ? _player
@@ -48,6 +51,7 @@ namespace TheyAreComing
                 case GameState.Ready:
                     break;
                 case GameState.Play:
+                    MenuService.GetMenu<PlayMenu>().Appear();
                     ToggleCharacters(true);
                     break;
                 case GameState.Fail:

@@ -56,9 +56,8 @@ namespace TheyAreComing
 
         public static void DisappearNearEnemies()
         {
-            var nearEnemies = TargetEnemyBases.FindAll(x =>
-                x.transform.position.z - 7f <
-                GameManager.Player.Position.z);
+            var nearEnemies = AllEnemyBases.FindAll(x =>
+                Mathf.Abs(x.transform.position.z - GameManager.Player.Position.z) < 7f);
             nearEnemies.ForEach(x => x.Disappear());
         }
 
