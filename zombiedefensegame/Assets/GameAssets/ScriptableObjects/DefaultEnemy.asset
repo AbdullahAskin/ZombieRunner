@@ -19,6 +19,10 @@ MonoBehaviour:
     range: 30
     attackRange: 6.5
     damage: 40
+    score: 1
   _playerCharacterSettings:
     MaxHealth: 0
     Speed: 0
+    horizontalTouchSpeed: 0
+    movementRange: 0
+    touchDeadZone: 0
