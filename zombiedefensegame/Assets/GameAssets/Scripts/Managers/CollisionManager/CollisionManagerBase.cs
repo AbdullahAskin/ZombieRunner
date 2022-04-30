@@ -39,8 +39,8 @@ namespace TheyAreComing
         {
             var absAmount = Mathf.Abs(amount);
             var additional = new Vector2(0, ySpawnPos);
-            if (amount > 0) healNumber.Spawn(CharacterPos + (Vector3) additional * 2, absAmount);
-            else damageNumber.Spawn(CharacterPos + (Vector3) additional, absAmount);
+            if (amount > 0) healNumber.Spawn(CharacterPos + (Vector3)additional * 2, absAmount);
+            else damageNumber.Spawn(CharacterPos + (Vector3)additional, absAmount);
         }
 
         protected abstract void OnDeath();
