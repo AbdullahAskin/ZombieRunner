@@ -37,6 +37,7 @@ namespace TheyAreComing
 
         public void Death()
         {
+            GameManager.PlayMenu.IncreaseScore(EnemyCharacterSettings.score);
             EnemyManager.Remove(this);
             Collider.enabled = false;
         }
