@@ -1,2 +1,0 @@
-# zombiedefensegame
-Zombie defense game
