@@ -11,6 +11,7 @@ namespace TheyAreComing
     {
         [SerializeField] private List<Gun> guns;
         [SerializeField] private Transform aimTargetTrans;
+        [Range(0,2)]public int startGun;
         public float rotateSpeed;
         private bool _canFire = true;
         private Gun _currentGun;
@@ -20,7 +21,7 @@ namespace TheyAreComing
 
         private void Awake()
         {
-            SwitchGun(0);
+            SwitchGun(startGun);
         }
 
         public void Fire()
