@@ -704,7 +704,7 @@ MonoBehaviour:
   spawnablePrefabs:
   - {fileID: 1957431577430345524, guid: 5c07a67a5fcd58d4d9112912962fee1f, type: 3}
   - {fileID: 1957431577430345524, guid: 7137b6b1a50113e4c8ceb35d702b520b, type: 3}
-  spawnPerDistance: {x: 30, y: 70}
+  spawnPerDistance: {x: 20, y: 40}
   horizontalLimit: {x: -4, y: 4}
   verticalSpawnPos: {x: 75, y: 75}
   destroyDistance: 5
@@ -821,7 +821,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnablePrefabs:
   - {fileID: 7328270055455756806, guid: 73f70b135fee52b4eaffb8b972d52597, type: 3}
-  spawnPerDistance: {x: 5, y: 10}
+  spawnPerDistance: {x: 2, y: 5}
   horizontalLimit: {x: -5, y: 5}
   verticalSpawnPos: {x: 15, y: 20}
   destroyDistance: 5
@@ -2557,6 +2557,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6189162059125083877, guid: 1351f31f04b1d0e48ad4142eee107ef4, type: 3}
+      propertyPath: startGun
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6189162059125083877, guid: 1351f31f04b1d0e48ad4142eee107ef4, type: 3}
+      propertyPath: iStartGun
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6189162059125083902, guid: 1351f31f04b1d0e48ad4142eee107ef4, type: 3}
       propertyPath: m_Name
       value: Player
