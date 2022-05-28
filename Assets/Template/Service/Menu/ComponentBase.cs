@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Service
 {
-    public abstract class ExtensionBase : MonoBehaviour
+    public abstract class ComponentBase : MonoBehaviour
     {
         public float appearDuration;
         public float disappearDuration;

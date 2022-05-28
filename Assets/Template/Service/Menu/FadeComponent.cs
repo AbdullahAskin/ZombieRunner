@@ -5,7 +5,7 @@ using UnityEngine.UI;
 namespace Service
 {
     [RequireComponent(typeof(Graphic))]
-    public class FadeExtension : ExtensionBase
+    public class FadeComponent : ComponentBase
     {
         private Graphic _sourceGraphic;
         private Graphic SourceGraphic => _sourceGraphic ? _sourceGraphic : _sourceGraphic = GetComponent<Graphic>();

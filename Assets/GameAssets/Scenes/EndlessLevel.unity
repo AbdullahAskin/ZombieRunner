@@ -2559,7 +2559,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6189162059125083877, guid: 1351f31f04b1d0e48ad4142eee107ef4, type: 3}
       propertyPath: startGun
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6189162059125083877, guid: 1351f31f04b1d0e48ad4142eee107ef4, type: 3}
       propertyPath: iStartGun

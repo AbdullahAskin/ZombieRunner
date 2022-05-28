@@ -9,7 +9,7 @@ namespace Service
     [RequireComponent(typeof(CanvasGroup))]
     public class MenuBase : MonoBehaviour
     {
-        [SerializeField] private List<ExtensionBase> extensionBases;
+        [SerializeField] private List<ComponentBase> extensionBases;
         [SerializeField] protected GameObject content;
         private CanvasGroup _canvasGroup;
         protected MenuState MenuState = MenuState.DisActivated;

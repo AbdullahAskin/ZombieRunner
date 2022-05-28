@@ -2,7 +2,7 @@ using DG.Tweening;
 
 namespace Service
 {
-    public class ScaleExtension : ExtensionBase
+    public class ScaleComponent : ComponentBase
     {
         public override void Disappear()
         {
