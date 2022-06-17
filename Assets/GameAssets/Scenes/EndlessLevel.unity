@@ -820,6 +820,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnablePrefabs:
+  - {fileID: 1661818416798059746, guid: 18443b3c89e502f4aa0ceb3beec4cee1, type: 3}
   - {fileID: 1661818416798059746, guid: 5dd3d369dacda24428c3166cd3eec815, type: 3}
   spawnPerDistance: {x: 2, y: 5}
   horizontalLimit: {x: -5, y: 5}
