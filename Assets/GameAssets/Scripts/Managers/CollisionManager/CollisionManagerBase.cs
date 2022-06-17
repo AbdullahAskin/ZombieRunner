@@ -6,7 +6,7 @@ namespace TheyAreComing
     [RequireComponent(typeof(StateManager))]
     public abstract class CollisionManagerBase : MonoBehaviour
     {
-        [SerializeField] private float ySpawnPos;
+        [SerializeField] private float feedbackSpawnPosY;
         [SerializeField] private DamageNumber damageNumber;
         [SerializeField] private DamageNumber healNumber;
         private int _currentHealth;
@@ -38,7 +38,7 @@ namespace TheyAreComing
         private void CreateFeedback(int amount)
         {
             var absAmount = Mathf.Abs(amount);
-            var additional = new Vector2(0, ySpawnPos);
+            var additional = new Vector2(0, feedbackSpawnPosY);
             if (amount > 0) healNumber.Spawn(CharacterPos + (Vector3)additional * 2, absAmount);
             else damageNumber.Spawn(CharacterPos + (Vector3)additional, absAmount);
         }

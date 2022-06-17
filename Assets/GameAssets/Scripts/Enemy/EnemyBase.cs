@@ -21,6 +21,7 @@ namespace TheyAreComing
         private void Awake()
         {
             EnemyManager.Add(this);
+            GetComponentInChildren<EnemyEventBase>().attackEffectDistance = EnemyCharacterSettings.attackEffectDistance;
         }
 
         private void OnEnable()

@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e868de8af032d7a468b7db9a562cc212, type: 3}
-  m_Name: DefaultEnemy
+  m_Name: RunnerEnemy
   m_EditorClassIdentifier: 
   isPlayer: 0
   _enemyCharacterSettings:
-    MaxHealth: 60
-    Speed: 6
+    MaxHealth: 200
+    Speed: 7
     attackEffectDistance: 2.6
     chaseRange: 30
     attackRange: 6.5

@@ -4,7 +4,7 @@ namespace TheyAreComing
 {
     public class EnemyEventBase : MonoBehaviour
     {
-        [SerializeField] private float attackEffectDistance;
+        [HideInInspector] public float attackEffectDistance;
         private EnemyBase _enemyBase;
         private EnemyBase EnemyBase => _enemyBase ? _enemyBase : _enemyBase = GetComponentInParent<EnemyBase>();
 

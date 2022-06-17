@@ -19,7 +19,8 @@ namespace TheyAreComing
     [Serializable]
     public class EnemyCharacterSettings : CharacterSettings
     {
-        public float range;
+        public float attackEffectDistance;
+        public float chaseRange;
         public float attackRange;
         public int damage;
         public int score;
