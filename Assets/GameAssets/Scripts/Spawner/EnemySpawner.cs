@@ -6,7 +6,8 @@ namespace TheyAreComing
     {
         protected override Transform GetSpawnPrefab()
         {
-            return spawnablePrefabs[0];
+            var iSpawnPrefab = Random.Range(0,spawnablePrefabs.Count);
+            return spawnablePrefabs[iSpawnPrefab];
         }
     }
 }
