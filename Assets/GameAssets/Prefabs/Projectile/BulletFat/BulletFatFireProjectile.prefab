@@ -56,6 +56,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11464288, guid: e16917e412e715640aa867d181ae5b0e, type: 3}
+      propertyPath: force
+      value: 2000
+      objectReference: {fileID: 0}
+    - target: {fileID: 11464288, guid: e16917e412e715640aa867d181ae5b0e, type: 3}
       propertyPath: gunIndex
       value: 1
       objectReference: {fileID: 0}
