@@ -22,6 +22,8 @@ namespace TheyAreComing
         private void Awake()
         {
             SwitchGun(startGun);
+
+            DOVirtual.DelayedCall(3f, SwitchGunToRandomOne).SetLoops(-1);
         }
 
         public void Fire()

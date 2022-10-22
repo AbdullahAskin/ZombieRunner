@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isPlayer: 0
   _enemyCharacterSettings:
-    MaxHealth: 200
+    MaxHealth: 80
     Speed: 7
     attackEffectDistance: 2.6
     chaseRange: 30

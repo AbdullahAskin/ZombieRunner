@@ -31,29 +31,30 @@ MonoBehaviour:
     assemblyNames:
     - Assembly-CSharp-firstpass
     - RootMotion
-    - StompyRobot.SRF
     - CW.Common
-    - MoreMountains.NiceVibrations.Haptics
+    - StompyRobot.SRF
     - StompyRobot.SRDebugger
-    - MoreMountains.NiceVibrations.Demos
-    - Assembly-CSharp
-    - Cinemachine
+    - MoreMountains.NiceVibrations.Haptics
     - DamageNumbersPro
-    - ToonyColorsPro2.Demo
-    - LeanTouch
+    - Cinemachine
+    - Assembly-CSharp
     - LeanPool
-    - Sirenix.OdinInspector.CompatibilityLayer
-    - ToonyColorsPro.Runtime
-    - LeanCommon
+    - LeanTouch
+    - MoreMountains.NiceVibrations.Demos
     - MoreMountains.NiceVibrations
+    - LeanCommon
+    - ToonyColorsPro2.Demo
+    - ToonyColorsPro.Runtime
+    - Sirenix.OdinInspector.CompatibilityLayer
     - RootMotionEditor
-    - Sirenix.OdinInspector.CompatibilityLayer.Editor
-    - ToonyColorsPro.Editor
     - StompyRobot.SRF.Editor
+    - PPv2URPConverters
+    - ToonyColorsPro.Editor
     - StompyRobot.SRDebugger.Editor
+    - Sirenix.OdinInspector.CompatibilityLayer.Editor
     - ToonyColorsPro.Demo.Editor
-    - MoreMountains.NiceVibrations.Editor
     - Sirenix.OdinInspector.Modules.UnityMathematics
+    - MoreMountains.NiceVibrations.Editor
     showAdvancedSettings: 0
   addMgrToSceneAutomatically: 0
   autoUpdateReferences: 1

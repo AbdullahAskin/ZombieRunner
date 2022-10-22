@@ -56,6 +56,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11464288, guid: e16917e412e715640aa867d181ae5b0e, type: 3}
+      propertyPath: force
+      value: 2000
+      objectReference: {fileID: 0}
+    - target: {fileID: 11464288, guid: e16917e412e715640aa867d181ae5b0e, type: 3}
       propertyPath: gunIndex
       value: 1
       objectReference: {fileID: 0}
@@ -136,6 +140,14 @@ PrefabInstance:
     - target: {fileID: 425650, guid: 57655e8894da46a4aa87ffad47144413, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 19833950, guid: 57655e8894da46a4aa87ffad47144413, type: 3}
+      propertyPath: InitialModule.startSizeY.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 19833950, guid: 57655e8894da46a4aa87ffad47144413, type: 3}
+      propertyPath: InitialModule.startSizeZ.minMaxState
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57655e8894da46a4aa87ffad47144413, type: 3}
