@@ -16,9 +16,11 @@ MonoBehaviour:
   _enemyCharacterSettings:
     MaxHealth: 0
     Speed: 0
-    range: 0
+    attackEffectDistance: 0
+    chaseRange: 0
     attackRange: 0
     damage: 0
+    score: 0
   _playerCharacterSettings:
     MaxHealth: 100
     Speed: 8

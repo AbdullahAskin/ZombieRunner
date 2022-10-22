@@ -4,7 +4,6 @@ namespace TheyAreComing
 {
     public class EnemyBase : MonoBehaviour
     {
-        [SerializeField] private ParticleSystem spawnParticle;
         public Transform skinTrans;
         [SerializeField] private CharacterSettingsScriptableObject characterSettingsScriptable;
         private Collider _collider;
@@ -26,9 +25,9 @@ namespace TheyAreComing
 
         private void OnEnable()
         {
-            spawnParticle.transform.position =
-                GameManager.CurvedWorldController.TransformPosition(spawnParticle.transform.position);
-            spawnParticle.Play();
+            var dir = GameManager.Player.Position - transform.position;
+            var rotation = Quaternion.LookRotation(dir, Vector3.up);
+            transform.rotation = rotation;
         }
 
         private void OnDisable()

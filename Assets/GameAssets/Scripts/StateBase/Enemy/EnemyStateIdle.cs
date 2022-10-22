@@ -20,8 +20,8 @@ namespace TheyAreComing
 
         public override void UpdateState()
         {
-            var dis = Vector3.Distance(StateManager.transform.position, Player.Position);
-            if (dis > CharacterSettings.chaseRange) return;
+            if (!GameManager.Player.IsAlive) return;
+            
             StateManager.SwitchState<EnemyStateMovement>(0);
         }
     }
