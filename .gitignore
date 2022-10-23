@@ -59,3 +59,15 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
+
+Assets/.reuniter_data
+
+Assets/Plugins/Easy Save 3/Resources/ES3/ES3Defaults.asset
+
+UserSettings/EditorUserSettings.asset
+
+ProjectSettings/QualitySettings.asset
+
+ProjectSettings/ProjectSettings.asset
+
+UserSettings/Layouts/default-2021.dwlt
