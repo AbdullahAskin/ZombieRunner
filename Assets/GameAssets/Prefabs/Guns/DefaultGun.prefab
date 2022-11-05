@@ -107,7 +107,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5223636199124288313, guid: 894e45a1cdf21aa4285569e809fb3acc, type: 3}
       propertyPath: fireOffset
-      value: 0.2
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 5223636199124288313, guid: 894e45a1cdf21aa4285569e809fb3acc, type: 3}
       propertyPath: recoilAmount

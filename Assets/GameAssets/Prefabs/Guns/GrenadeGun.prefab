@@ -819,7 +819,7 @@ PrefabInstance:
       objectReference: {fileID: 4422084297763085224, guid: 0000000000000000d000000000000000, type: 0}
     - target: {fileID: 5223636199124288313, guid: 894e45a1cdf21aa4285569e809fb3acc, type: 3}
       propertyPath: fireOffset
-      value: 0.4
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 5223636199124288313, guid: 894e45a1cdf21aa4285569e809fb3acc, type: 3}
       propertyPath: recoilAmount
@@ -871,14 +871,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 894e45a1cdf21aa4285569e809fb3acc, type: 3}
---- !u!4 &8227871541360301017 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4783156733133599925, guid: 894e45a1cdf21aa4285569e809fb3acc, type: 3}
-  m_PrefabInstance: {fileID: 3480836274504443756}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &190753241495111127 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3669267293788152507, guid: 894e45a1cdf21aa4285569e809fb3acc, type: 3}
+  m_PrefabInstance: {fileID: 3480836274504443756}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &8227871541360301017 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4783156733133599925, guid: 894e45a1cdf21aa4285569e809fb3acc, type: 3}
   m_PrefabInstance: {fileID: 3480836274504443756}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4745277523622053857
