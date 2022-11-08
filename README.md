@@ -1,6 +1,6 @@
 # Last Man Standing
 
-Post-apocalyptic zombie runner, plus basic epilepsy guaranteed gun fight :)
+Post-apocalyptic zombie runner, plus epilepsy guaranteed gun fight :)
 
 <img src="Images/ss_1.jpg" width="280" height="500">      <img src="Images/ss_2.jpg" width="280" height="500">
 
