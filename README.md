@@ -1,6 +1,6 @@
 # Last Man Standing
 
-Post-apocalyptic zombie runner which I have been working on for the Play Store
+Post-apocalyptic zombie runner, plus basic epilepsy guaranteed gun fight :)
 
 <img src="Images/ss_1.jpg" width="280" height="500">      <img src="Images/ss_2.jpg" width="280" height="500">
 
@@ -10,5 +10,4 @@ Post-apocalyptic zombie runner which I have been working on for the Play Store
 
 <img src="Images/ss_7.jpg" width="280" height="500">    
 
-
-
+Play Store Link : https://play.google.com/store/apps/details?id=io.BetaMode.LastManStanding
